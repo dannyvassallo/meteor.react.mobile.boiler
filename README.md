@@ -17,6 +17,8 @@ First, Install [Meteor](https://www.meteor.com/install).
 
 Then do the following:
 ```shell
+#on windows you may need powershell if you
+#run into issues with gitbash and meteor
 git clone https://github.com/dannyvassallo/meteor.react.mobile.boiler.git
 cd meteor.react.mobile.boiler
 meteor npm install
@@ -53,3 +55,21 @@ Once that's done, you can deploy your app using this build pack any time by push
 ```
 git push heroku master
 ```
+
+###Sync your local settings w/ Heroku
+```
+heroku config:add METEOR_SETTINGS="$(cat settings.json)"
+```
+
+###Running on android
+
+In the shell with your device connected run:
+
+```
+MONGO_URL="mongodb://<username>:<password>@<mlab url>.mlab.com:<portnumber>/<dbname>" meteor run android-device --mobile-server=https://<appname>.herokuapp.com
+```
+###Generating Icons and splashes
+
+Use meteor image asset generator [here](https://github.com/lpender/meteor-assets).
+
+Follow the instructions and copy the resulting resources folder over the one in this project.
