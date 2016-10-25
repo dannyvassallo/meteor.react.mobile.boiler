@@ -8,8 +8,8 @@ import { Tasks } from '../api/tasks.js';
 import Task from './Task.jsx';
 import AccountsUIWrapper from './AccountsUIWrapper.jsx';
 
-// App component - represents the whole app
-class App extends Component {
+// TasksPage component - represents the whole app
+class TasksPage extends Component {
   constructor(props) {
     super(props);
 
@@ -92,7 +92,7 @@ class App extends Component {
   }
 }
 
-App.propTypes = {
+TasksPage.propTypes = {
   tasks: PropTypes.array.isRequired,
   incompleteCount: PropTypes.number.isRequired,
   currentUser: PropTypes.object,
@@ -106,4 +106,4 @@ export default createContainer(() => {
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
     currentUser: Meteor.user(),
   };
-}, App);
+}, TasksPage);
