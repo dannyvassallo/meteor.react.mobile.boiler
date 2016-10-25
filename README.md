@@ -7,6 +7,7 @@ A meteor app preset with React as the view layer with  deployment &  mobile app 
 * Meteor
 * [Meteor Mocha](https://github.com/practicalmeteor/meteor-mocha) For Testing
 * AccountsUI
+* SCSS
 * React
 * react-addons-pure-render-mixin
 * react-dom
