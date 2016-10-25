@@ -1,5 +1,7 @@
 # ⚛ React Mobile App Boilerplate for Meteor ☄
 
+A meteor app preset with React as the view layer with  deployment &  mobile app instructions.
+
 ###Technologies Used 🤖
 
 * Meteor
