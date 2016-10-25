@@ -2,7 +2,8 @@
   "name": "meteor.react.mobile.boiler",
   "private": true,
   "scripts": {
-    "start": "meteor run"
+    "start": "meteor run",
+    "test": "meteor test --driver-package practicalmeteor:mocha --port 8080"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
