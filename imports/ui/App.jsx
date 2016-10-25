@@ -99,7 +99,6 @@ App.propTypes = {
 };
 
 export default createContainer(() => {
-
   Meteor.subscribe('tasks');
 
   return {
