@@ -1,6 +1,6 @@
 # ⚛ React Mobile App Boilerplate for Meteor ☄
 
-###Technologies Used
+###Technologies Used 🤖
 
 * Meteor
 * [Meteor Mocha](https://github.com/practicalmeteor/meteor-mocha) For Testing
