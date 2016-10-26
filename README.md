@@ -12,7 +12,7 @@ A meteor app preset with React as the view layer with  deployment &  mobile app 
 * react-addons-pure-render-mixin
 * react-dom
 * classnames
-
+* react-router
 
 ###Getting Started 🔥
 

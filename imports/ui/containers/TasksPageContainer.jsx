@@ -3,13 +3,13 @@ import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
-import { Tasks } from '../api/tasks.js';
+import { Tasks } from '../../api/tasks.js';
 
-import Task from './Task.jsx';
-import AccountsUIWrapper from './AccountsUIWrapper.jsx';
+import Task from '../components/Task.jsx';
+import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
 
 // TasksPage component - represents the whole app
-class TasksPage extends Component {
+export default class TasksPage extends Component {
   constructor(props) {
     super(props);
 
@@ -98,7 +98,7 @@ TasksPage.propTypes = {
   currentUser: PropTypes.object,
 };
 
-export default createContainer(() => {
+export default TaskPageContainer = createContainer(() => {
   Meteor.subscribe('tasks');
 
   return {
