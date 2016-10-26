@@ -12,7 +12,7 @@ A meteor app preset with React as the view layer with  deployment &  mobile app 
 * react-addons-pure-render-mixin
 * react-dom
 * classnames
-
+* react-router
 
 ###Getting Started 🔥
 
@@ -26,6 +26,38 @@ git clone https://github.com/dannyvassallo/meteor.react.mobile.boiler.git
 cd meteor.react.mobile.boiler
 meteor npm install
 meteor run
+```
+
+###File & Folder Structure
+
+```shell
+  |-- .gitignore
+  |-- README.md
+  |-- package.json
+  |-- .meteor
+  |-- client
+  |   |-- main.html #render target
+  |   |-- main.jsx #imports html and startup
+  |   |-- main.scss #use custom scss here
+  |-- imports
+  |   |-- api
+  |   |   |-- #your serverside methods & tests go here myfile.tests.js
+  |   |-- startup
+  |   |   |-- client
+  |   |       |-- index.js #imports routes and accounts config
+  |   |       |-- routes.jsx #edit routes here
+  |   |       |-- accounts-config.js #edit accounts ui configuration here
+  |   |-- ui
+  |       |-- components
+  |       |   |-- #your components go here
+  |       |-- containers
+  |       |   |-- #containers w/ meteor data go here
+  |       |-- layouts
+  |       |   |-- #the apps layouts go here
+  |       |-- pages
+  |           |-- #Put your page components here
+  |-- server
+      |-- main.js #imports from api
 ```
 
 ###Testing 🎓
