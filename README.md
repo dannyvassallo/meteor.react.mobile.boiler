@@ -28,6 +28,38 @@ meteor npm install
 meteor run
 ```
 
+###File & Folder Structure
+
+```shell
+  |-- .gitignore
+  |-- README.md
+  |-- package.json
+  |-- .meteor
+  |-- client
+  |   |-- main.html
+  |   |-- main.jsx #imports html and startup
+  |   |-- main.scss
+  |-- imports
+  |   |-- api
+  |   |   |-- #your serverside methods & tests go here myfile.tests.js
+  |   |-- startup
+  |   |   |-- accounts-config.js #edit accounts ui configuration here
+  |   |   |-- client
+  |   |       |-- index.js #
+  |   |       |-- routes.jsx #edit routes here
+  |   |-- ui
+  |       |-- components
+  |       |   |-- #your components go here
+  |       |-- containers
+  |       |   |-- #containers w/ meteor data go here
+  |       |-- layouts
+  |       |   |-- #the apps layouts go here
+  |       |-- pages
+  |           |-- #Put your page components here
+  |-- server
+      |-- main.js
+```
+
 ###Testing 🎓
 
 ```shell
