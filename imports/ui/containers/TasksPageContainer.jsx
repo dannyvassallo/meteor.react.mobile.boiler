@@ -8,7 +8,7 @@ import { Tasks } from '../../api/tasks.js';
 import Task from '../components/Task.jsx';
 import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
 
-// TasksPage component - represents the whole app
+// TasksPage component
 export default class TasksPage extends Component {
   constructor(props) {
     super(props);
