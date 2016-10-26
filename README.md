@@ -43,10 +43,10 @@ meteor run
   |   |-- api
   |   |   |-- #your serverside methods & tests go here myfile.tests.js
   |   |-- startup
-  |   |   |-- accounts-config.js #edit accounts ui configuration here
   |   |   |-- client
-  |   |       |-- index.js #
+  |   |       |-- index.js #imports routes and accounts config
   |   |       |-- routes.jsx #edit routes here
+  |   |       |-- accounts-config.js #edit accounts ui configuration here
   |   |-- ui
   |       |-- components
   |       |   |-- #your components go here
