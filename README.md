@@ -36,9 +36,9 @@ meteor run
   |-- package.json
   |-- .meteor
   |-- client
-  |   |-- main.html
+  |   |-- main.html #render target
   |   |-- main.jsx #imports html and startup
-  |   |-- main.scss
+  |   |-- main.scss #use custom scss here
   |-- imports
   |   |-- api
   |   |   |-- #your serverside methods & tests go here myfile.tests.js
@@ -57,7 +57,7 @@ meteor run
   |       |-- pages
   |           |-- #Put your page components here
   |-- server
-      |-- main.js
+      |-- main.js #imports from api
 ```
 
 ###Testing 🎓
