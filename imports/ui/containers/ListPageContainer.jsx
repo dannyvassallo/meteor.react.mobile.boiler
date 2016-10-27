@@ -8,6 +8,7 @@ import Task from '../components/Task.jsx';
 import { List } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import Subheader from 'material-ui/Subheader';
+import Checkbox from 'material-ui/Checkbox';
 
 
 export default class ListPage extends Component {
@@ -60,7 +61,16 @@ export default class ListPage extends Component {
               <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-12 col-lg-offset-0">
                 <Paper style={paperStyle} zDepth={1}>
                   <List>
-                    <Subheader>Today</Subheader>
+                    <Subheader>
+                      <h2 className="task-list-header">Task List ({this.props.incompleteCount})</h2>
+                      <Checkbox
+                        checked={this.state.hideCompleted}
+                        onClick={this.toggleHideCompleted.bind(this)}
+                        label="Hide Completed"
+                        labelPosition="left"
+                        className="hide-completed"
+                      />
+                    </Subheader>
                   </List>
                   {this.renderTasks()}
                 </Paper>

@@ -10,3 +10,14 @@ body{
     text-decoration: line-through;
   }
 }
+
+.task-list-header,
+.hide-completed{
+  width: 50% !important;
+  display: inline-block !important;
+  vertical-align: middle;
+}
+
+.hide-completed label{
+  text-align: right;
+}
