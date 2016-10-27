@@ -6,7 +6,8 @@ import { createContainer } from 'meteor/react-meteor-data';
 import { Tasks } from '../../api/tasks.js';
 
 import {List, ListItem} from 'material-ui/List';
-import {Paper} from 'material-ui';
+import Paper from 'material-ui/Paper';
+import Checkbox from 'material-ui/Checkbox';
 import Divider from 'material-ui/Divider';
 import Subheader from 'material-ui/Subheader';
 import Avatar from 'material-ui/Avatar';
@@ -33,6 +34,7 @@ export default class ListPage extends Component {
       <IconMenu iconButtonElement={iconButtonElement}>
         <MenuItem>Mark as Private</MenuItem>
         <MenuItem>Delete</MenuItem>
+        <MenuItem>Close</MenuItem>
       </IconMenu>
     );
 
@@ -48,7 +50,7 @@ export default class ListPage extends Component {
           <List>
             <Subheader>Today</Subheader>
             <ListItem
-              leftAvatar={<Avatar src="images/ok-128.jpg" />}
+              leftCheckbox={<Checkbox />}
               rightIconButton={rightIconMenu}
               primaryText="Brendan Lim"
               secondaryText={
@@ -61,7 +63,7 @@ export default class ListPage extends Component {
             />
             <Divider inset={true} />
             <ListItem
-              leftAvatar={<Avatar src="images/kolage-128.jpg" />}
+              leftCheckbox={<Checkbox />}
               rightIconButton={rightIconMenu}
               primaryText="me, Scott, Jennifer"
               secondaryText={
@@ -74,7 +76,7 @@ export default class ListPage extends Component {
             />
             <Divider inset={true} />
             <ListItem
-              leftAvatar={<Avatar src="images/uxceo-128.jpg" />}
+              leftCheckbox={<Checkbox />}
               rightIconButton={rightIconMenu}
               primaryText="Grace Ng"
               secondaryText={
@@ -87,7 +89,7 @@ export default class ListPage extends Component {
             />
             <Divider inset={true} />
             <ListItem
-              leftAvatar={<Avatar src="images/kerem-128.jpg" />}
+              leftCheckbox={<Checkbox />}
               rightIconButton={rightIconMenu}
               primaryText="Kerem Suer"
               secondaryText={
@@ -100,7 +102,7 @@ export default class ListPage extends Component {
             />
             <Divider inset={true} />
             <ListItem
-              leftAvatar={<Avatar src="images/raquelromanp-128.jpg" />}
+              leftCheckbox={<Checkbox />}
               rightIconButton={rightIconMenu}
               primaryText="Raquel Parrado"
               secondaryText={
