@@ -6,6 +6,7 @@ import { AppLayout } from '../../ui/layouts/AppLayout.jsx';
 
 import { Index } from '../../ui/pages/Index.jsx';
 // When you export default you DON'T need {} otherwise, you will.
+import ListPageContainer from '../../ui/containers/ListPageContainer.jsx';
 import TasksPageContainer from '../../ui/containers/TasksPageContainer.jsx';
 import { NotFound } from '../../ui/pages/NotFound.jsx';
 
@@ -13,7 +14,7 @@ Meteor.startup( () => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ AppLayout }>
-        <IndexRoute component={ Index } />
+        <IndexRoute component={ ListPageContainer } />
         <Route path="/tasks" component={ TasksPageContainer } />
         <Route path="*" component={ NotFound } />
       </Route>
