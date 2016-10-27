@@ -26,7 +26,7 @@ var NavBar = React.createClass({
     return (
       <div className="navbar">
         <AppBar
-          title="sern.js"
+          title="MeteorTodo"
           iconClassNameRight="logo"
           onTitleTouchTap={this._goToIndex}
           onLeftIconButtonTouchTap={this._toggleAppDrawer}
