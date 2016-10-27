@@ -5,11 +5,14 @@ import { createContainer } from 'meteor/react-meteor-data';
 
 import { Tasks } from '../../api/tasks.js';
 import Task from '../components/Task.jsx';
-import { List } from 'material-ui/List';
+import { List, ListItem } from 'material-ui/List';
 import Paper from 'material-ui/Paper';
 import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
-
+import Divider from 'material-ui/Divider';
+import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
 export default class ListPage extends Component {
 
@@ -25,6 +28,18 @@ export default class ListPage extends Component {
     this.setState({
       hideCompleted: !this.state.hideCompleted,
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    // Find the text field via the React ref
+    const text = $('#newTaskInput').val().trim();
+
+    Meteor.call('tasks.insert', text);
+
+    // Clear form
+    $('#newTaskInput').val('');
   }
 
   renderTasks() {
@@ -71,8 +86,26 @@ export default class ListPage extends Component {
                         className="hide-completed"
                       />
                     </Subheader>
+                    <Divider inset={true} />
                   </List>
                   {this.renderTasks()}
+                  <ListItem
+                    insetChildren={true}
+                    className="form-list-item"
+                  >
+                  { this.props.currentUser ?
+                    <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+                      <TextField
+                        type="text"
+                        id="newTaskInput"
+                        placeholder="Type to add new tasks"
+                      />
+                      <FloatingActionButton type="submit">
+                        <ContentAdd />
+                      </FloatingActionButton>
+                    </form> : ''
+                  }
+                  </ListItem>
                 </Paper>
               </div>
             </div>
