@@ -3,3 +3,10 @@
 body{
   margin: 0;
 }
+
+.checked{
+  .text,
+  .username{
+    text-decoration: line-through;
+  }
+}

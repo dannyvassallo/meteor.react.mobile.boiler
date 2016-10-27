@@ -1,6 +1,18 @@
 import React, { Component, PropTypes } from 'react';
 import { Meteor } from 'meteor/meteor';
 import classnames from 'classnames';
+import IconMenu from 'material-ui/IconMenu';
+import MenuItem from 'material-ui/MenuItem';
+import {grey400, darkBlack, lightBlack} from 'material-ui/styles/colors';
+import IconButton from 'material-ui/IconButton';
+import CloseIcon from 'material-ui/svg-icons/navigation/close';
+import DeleteIcon from 'material-ui/svg-icons/action/delete';
+import LockIcon from 'material-ui/svg-icons/action/lock';
+import PublicIcon from 'material-ui/svg-icons/social/public';
+import MoreVertIcon from 'material-ui/svg-icons/navigation/more-vert';
+import { ListItem } from 'material-ui/List';
+import Checkbox from 'material-ui/Checkbox';
+import Divider from 'material-ui/Divider';
 
 // Task component - represents a single todo item
 export default class Task extends Component {
@@ -25,29 +37,70 @@ export default class Task extends Component {
       private: this.props.task.private,
     });
 
-    return (
-      <li className={taskClassName}>
-        <button className="delete" onClick={this.deleteThisTask.bind(this)}>
-          &times;
-        </button>
+    const menuIconStyle = {
+      marginRight: '5px',
+      verticalAlign: 'middle',
+      height: '20px',
+      width: '20px'
+    };
 
-        <input
-          type="checkbox"
-          readOnly
-          checked={this.props.task.checked}
-          onClick={this.toggleChecked.bind(this)}
-        />
+    const iconButtonElement = (
+      <IconButton
+        touch={true}
+      >
+        <MoreVertIcon color={grey400} />
+      </IconButton>
+    );
 
+    const rightIconMenu = (
+      <IconMenu iconButtonElement={iconButtonElement}>
         { this.props.showPrivateButton ? (
-          <button className="toggle-private" onClick={this.togglePrivate.bind(this)}>
-            { this.props.task.private ? 'Private' : 'Public' }
-          </button>
+          <MenuItem onClick={this.togglePrivate.bind(this)}>
+            { this.props.task.private ? (
+                <div>
+                  <PublicIcon style={menuIconStyle} color={darkBlack} />
+                  Mark as Public
+                </div>
+              ) : (
+                <div>
+                  <LockIcon style={menuIconStyle} color={darkBlack} />
+                  Mark as Private
+                </div>
+              )
+            }
+          </MenuItem>
         ) : ''}
+        <MenuItem onClick={this.deleteThisTask.bind(this)}>
+          <DeleteIcon style={menuIconStyle} color={darkBlack} />
+          Delete
+        </MenuItem>
+        <MenuItem>
+          <CloseIcon style={menuIconStyle} color={darkBlack} />
+          Close
+        </MenuItem>
+      </IconMenu>
+    );
 
-        <span className="text">
-          <strong>{this.props.task.username}</strong>: {this.props.task.text}
-        </span>
-      </li>
+    return (
+      <div className={taskClassName}>
+        <ListItem
+          leftCheckbox={
+            <Checkbox
+              checked={this.props.task.checked}
+              onClick={this.toggleChecked.bind(this)}
+            />
+          }
+          rightIconButton={rightIconMenu}
+          primaryText={
+            <strong className="text">{this.props.task.text}</strong>
+          }
+          secondaryText={
+            <span className="username">{this.props.task.username}</span>
+          }
+          secondaryTextLines={2}
+        />
+        <Divider inset={true} />
+      </div>
     );
   }
 }
