@@ -24,8 +24,6 @@ export default class ListPage extends Component {
     const iconButtonElement = (
       <IconButton
         touch={true}
-        tooltip="more"
-        tooltipPosition="bottom-left"
       >
         <MoreVertIcon color={grey400} />
       </IconButton>
@@ -39,9 +37,9 @@ export default class ListPage extends Component {
     );
 
     const paperStyle = {
-      'margin-top': '40px',
-      'width': '100%',
-      'display': 'inline-block',
+      marginTop: '40px',
+      width: '100%',
+      display: 'inline-block',
     };
 
     return(
