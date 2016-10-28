@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/dannyvassallo/meteor.react.mobile.boiler.svg?branch=master)](https://travis-ci.org/dannyvassallo/meteor.react.mobile.boiler)
+
 # ⚛ React Mobile App Boilerplate for Meteor ☄
 
 A meteor app preset with React as the view layer with  deployment &  mobile app instructions.
