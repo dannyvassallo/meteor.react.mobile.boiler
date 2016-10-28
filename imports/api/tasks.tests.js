@@ -1,8 +1,8 @@
 /* eslint-env mocha */
-
 import { Meteor } from 'meteor/meteor';
 import { Random } from 'meteor/random';
 import { assert } from 'meteor/practicalmeteor:chai';
+import { resetDatabase } from 'meteor/xolvio:cleaner';
 
 import { Tasks } from './tasks.js';
 
@@ -13,6 +13,7 @@ if (Meteor.isServer) {
       let taskId;
 
       beforeEach(() => {
+        resetDatabase();
         Tasks.remove({});
         taskId = Tasks.insert({
           text: 'test task',
@@ -22,7 +23,7 @@ if (Meteor.isServer) {
         });
       });
 
-      it('can delete owned task', () => {
+      it('can delete owned task', function() {
         // Find the internal implementation of the task method so we can
         // test it in isolation
         const deleteTask = Meteor.server.method_handlers['tasks.remove'];
@@ -34,8 +35,12 @@ if (Meteor.isServer) {
         deleteTask.apply(invocation, [taskId]);
 
         // Verify that the method does what we expected
-        assert.equal(Tasks.find().count(), 0);
+        var assertion = assert.equal(Tasks.find().count(), 0);
+
+        return assertion;
+
       });
+
     });
   });
 }

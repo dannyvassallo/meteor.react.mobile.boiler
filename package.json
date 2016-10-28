@@ -3,13 +3,12 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "meteor test --driver-package practicalmeteor:mocha --port 8080",
-    "gulp": "gulp"
+    "prep-test": "sudo npm i spacejam -g",
+    "test": "TEST_WATCH=1 spacejam test --driver-package practicalmeteor:mocha-console-runner --port 8080"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
     "classnames": "^2.2.5",
-    "gulp": "^3.9.1",
     "material-ui": "^0.16.1",
     "meteor-node-stubs": "~0.2.0",
     "react": "^15.3.2",

@@ -14,7 +14,7 @@ import TextField from 'material-ui/TextField';
 import FloatingActionButton from 'material-ui/FloatingActionButton';
 import ContentAdd from 'material-ui/svg-icons/content/add';
 
-export default class TaskPage extends Component {
+export class TaskPage extends Component {
 
   constructor(props) {
     super(props);
