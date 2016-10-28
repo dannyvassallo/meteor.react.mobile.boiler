@@ -3,7 +3,8 @@
   "private": true,
   "scripts": {
     "start": "meteor run",
-    "test": "meteor test --driver-package practicalmeteor:mocha --port 8080"
+    "test": "meteor test --driver-package practicalmeteor:mocha --port 8080",
+    "gulp": "gulp"
   },
   "dependencies": {
     "bcrypt": "^0.8.7",
