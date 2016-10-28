@@ -13,6 +13,7 @@ A meteor app preset with React as the view layer with  deployment &  mobile app 
 * react-dom
 * classnames
 * react-router
+* flexboxgrid
 
 ###Getting Started 🔥
 

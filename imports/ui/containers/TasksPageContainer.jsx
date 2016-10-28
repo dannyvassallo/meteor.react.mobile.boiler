@@ -4,12 +4,18 @@ import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
 
 import { Tasks } from '../../api/tasks.js';
-
 import Task from '../components/Task.jsx';
-import AccountsUIWrapper from '../components/AccountsUIWrapper.jsx';
+import { List, ListItem } from 'material-ui/List';
+import Paper from 'material-ui/Paper';
+import Subheader from 'material-ui/Subheader';
+import Checkbox from 'material-ui/Checkbox';
+import Divider from 'material-ui/Divider';
+import TextField from 'material-ui/TextField';
+import FloatingActionButton from 'material-ui/FloatingActionButton';
+import ContentAdd from 'material-ui/svg-icons/content/add';
 
-// TasksPage component
-export default class TasksPage extends Component {
+export default class TaskPage extends Component {
+
   constructor(props) {
     super(props);
 
@@ -18,22 +24,22 @@ export default class TasksPage extends Component {
     };
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-
-    // Find the text field via the React ref
-    const text = ReactDOM.findDOMNode(this.refs.textInput).value.trim();
-
-    Meteor.call('tasks.insert', text);
-
-    // Clear form
-    ReactDOM.findDOMNode(this.refs.textInput).value = '';
-  }
-
   toggleHideCompleted() {
     this.setState({
       hideCompleted: !this.state.hideCompleted,
     });
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+
+    // Find the text field via the React ref
+    const text = $('#newTaskInput').val().trim();
+
+    Meteor.call('tasks.insert', text);
+
+    // Clear form
+    $('#newTaskInput').val('');
   }
 
   renderTasks() {
@@ -55,44 +61,61 @@ export default class TasksPage extends Component {
     });
   }
 
-  render() {
-    return (
-      <div className="container">
-        <header>
-          <h1>Todo List ({this.props.incompleteCount})</h1>
+  render(){
 
-          <label className="hide-completed">
-            <input
-              type="checkbox"
-              readOnly
-              checked={this.state.hideCompleted}
-              onClick={this.toggleHideCompleted.bind(this)}
-            />
-            Hide Completed Tasks
-          </label>
+    const paperStyle = {
+      marginTop: '40px',
+      width: '100%',
+      display: 'inline-block',
+    };
 
-          <AccountsUIWrapper />
-
-          { this.props.currentUser ?
-            <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-              <input
-                type="text"
-                ref="textInput"
-                placeholder="Type to add new tasks"
-              />
-            </form> : ''
-          }
-        </header>
-
-        <ul>
-          {this.renderTasks()}
-        </ul>
-      </div>
+    return(
+        <div>
+          <div className="container">
+            <div className="row">
+              <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-12 col-lg-offset-0">
+                <Paper style={paperStyle} zDepth={1}>
+                  <List>
+                    <Subheader>
+                      <h2 className="task-list-header">Task List ({this.props.incompleteCount})</h2>
+                      <Checkbox
+                        checked={this.state.hideCompleted}
+                        onClick={this.toggleHideCompleted.bind(this)}
+                        label="Hide Completed"
+                        labelPosition="left"
+                        className="hide-completed"
+                      />
+                    </Subheader>
+                    <Divider inset={true} />
+                  </List>
+                  {this.renderTasks()}
+                  <ListItem
+                    insetChildren={true}
+                    className="form-list-item"
+                  >
+                  { this.props.currentUser ?
+                    <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+                      <TextField
+                        type="text"
+                        id="newTaskInput"
+                        placeholder="Type to add new tasks"
+                      />
+                      <FloatingActionButton type="submit">
+                        <ContentAdd />
+                      </FloatingActionButton>
+                    </form> : ''
+                  }
+                  </ListItem>
+                </Paper>
+              </div>
+            </div>
+          </div>
+        </div>
     );
   }
 }
 
-TasksPage.propTypes = {
+TaskPage.propTypes = {
   tasks: PropTypes.array.isRequired,
   incompleteCount: PropTypes.number.isRequired,
   currentUser: PropTypes.object,
@@ -106,4 +129,4 @@ export default TaskPageContainer = createContainer(() => {
     incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
     currentUser: Meteor.user(),
   };
-}, TasksPage);
+}, TaskPage);

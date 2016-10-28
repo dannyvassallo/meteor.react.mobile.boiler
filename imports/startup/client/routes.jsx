@@ -13,8 +13,7 @@ Meteor.startup( () => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ AppLayout }>
-        <IndexRoute component={ Index } />
-        <Route path="/tasks" component={ TasksPageContainer } />
+        <IndexRoute component={ TaskPageContainer } />
         <Route path="*" component={ NotFound } />
       </Route>
     </Router>,

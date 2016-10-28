@@ -1,9 +1,12 @@
 import React from 'react';
-import { Navigation } from '../components/Navigation.jsx';
+import NavBar from '../components/NavBar.jsx';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
 export const AppLayout = ( { children } ) => (
-  <div>
-    <Navigation />
-    { children }
-  </div>
+  <MuiThemeProvider>
+    <div>
+      <NavBar />
+      { children }
+    </div>
+  </MuiThemeProvider>
 )
