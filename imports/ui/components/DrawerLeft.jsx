@@ -24,7 +24,7 @@ class DrawerLeft extends React.Component {
           width={200}
           open={this.props.drawer.drawerOpen}
           onRequestChange={(open) => this._handleClose() }
-          disableSwipeToOpen={false}
+          disableSwipeToOpen={true}
         >
           <Link to="/" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Home</MenuItem></Link>
         </Drawer>

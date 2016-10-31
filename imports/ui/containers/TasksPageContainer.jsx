@@ -72,7 +72,7 @@ export class TaskPage extends Component {
     return(
         <div>
           <div className="container">
-            <div className="row">
+            <div className="row-fluid">
               <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-12 col-lg-offset-0">
                 <Paper style={paperStyle} zDepth={1}>
                   <List>
