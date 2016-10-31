@@ -13,9 +13,9 @@ export default class LoginPage extends Component {
 
   handleSubmit(e){
     e.preventDefault();
-    let email = document.getElementById('login-email').value;
+    let name = document.getElementById("login-name").value;
     let password = document.getElementById('login-password').value;
-    Meteor.loginWithPassword(email, password, (err) => {
+    Meteor.loginWithPassword(name, password, (err) => {
       if(err){
         this.setState({
           error: err.reason
@@ -44,9 +44,9 @@ export default class LoginPage extends Component {
                     onSubmit={this.handleSubmit}>
                 <div className="form-group">
                   <input type="text"
-                        id="login-email"
+                        id="login-name"
                         className="form-control input-lg"
-                        placeholder="email"/>
+                        placeholder="name"/>
                 </div>
                 <div className="form-group">
                   <input type="password"

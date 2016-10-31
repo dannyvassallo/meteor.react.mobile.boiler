@@ -13,16 +13,15 @@ export default class SignupPage extends Component {
   handleSubmit(e){
     e.preventDefault();
     let name = document.getElementById("signup-name").value;
-    let email = document.getElementById("signup-email").value;
     let password = document.getElementById("signup-password").value;
     this.setState({error: "test"});
-    Accounts.createUser({email: email, username: name, password: password}, (err) => {
+    Accounts.createUser({username: name, password: password}, (err) => {
       if(err){
         this.setState({
           error: err.reason
         });
       } else {
-        browserHistory.push('/login');
+        browserHistory.push('/');
       }
     });
   }
@@ -46,10 +45,6 @@ export default class SignupPage extends Component {
                 <div className="form-group">
                   <input type="text" id="signup-name"
                         className="form-control input-lg" placeholder="name"/>
-                </div>
-                <div className="form-group">
-                  <input type="text" id="signup-email"
-                        className="form-control input-lg" placeholder="email"/>
                 </div>
                 <div className="form-group">
                   <input type="password" id="signup-password"
