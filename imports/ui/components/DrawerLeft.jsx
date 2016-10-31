@@ -22,7 +22,7 @@ class DrawerLeft extends React.Component {
         <Drawer
           docked={false}
           width={200}
-          open={this.props.drawerOpen}
+          open={this.props.drawer.drawerOpen}
           onRequestChange={(open) => this._handleClose() }
           disableSwipeToOpen={false}
         >

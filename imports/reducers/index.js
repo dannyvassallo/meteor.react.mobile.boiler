@@ -1,21 +1,8 @@
-import { createStore } from 'redux';
-import { browserHistory } from 'react-router';
+import { combineReducers, createStore } from 'redux'
+import drawer from './drawer'
 
-function Store(state, action) {
-  if (typeof state === 'undefined') {
-    return {
-      drawerOpen: false
-    }
-  }
+const reducers = combineReducers({
+  drawer
+});
 
-  switch (action.type) {
-    case 'OPEN_DRAWER':
-      return { ...state, drawerOpen: action.open }
-    case 'CLOSE_DRAWER':
-      return { ...state, drawerOpen: action.open }
-    default:
-      return state
-  }
-}
-
-module.exports = createStore(Store);
+module.exports = createStore(reducers);
