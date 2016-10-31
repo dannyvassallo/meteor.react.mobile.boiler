@@ -63,13 +63,10 @@ meteor run
       |-- main.js #imports from api
 ```
 
-###Testing 🎓
+###Running tests ✅
 
-```shell
-npm run test
-#when you see => App running at: http://localhost:8080/
-#visit localhost:8080 in a browser to invoke testing
-```
+On first run pass the terminal `npm run prep-test`
+every other time just run `npm run test`
 
 ###Deployment 🚀
 
@@ -111,8 +108,3 @@ MONGO_URL="mongodb://<username>:<password>@<mlab url>.mlab.com:<portnumber>/<dbn
 Use meteor image asset generator [here](https://github.com/lpender/meteor-assets).
 
 Follow the instructions and copy the resulting resources folder over the one in this project.
-
-###Running tests ✅
-
-On first run pass the terminal `npm run prep-test`
-every other time just run `npm run test`
