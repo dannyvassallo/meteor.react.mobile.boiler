@@ -1,13 +1,8 @@
 import React from 'react';
 import { IndexLink, Link, browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
-
-// export const Navigation = () => (
-//   <ul>
-//     <li><IndexLink to="/" activeClassName="active">Home</IndexLink></li>
-//     <li><Link to="/tasks" activeClassName="active">Tasks</Link></li>
-//   </ul>
-// )
+import Store from '../../reducers/index.js';
+import DrawerLeft from './DrawerLeft.jsx';
 
 var NavBar = React.createClass({
 
@@ -16,10 +11,11 @@ var NavBar = React.createClass({
   },
 
   _toggleAppDrawer: function(){
-    // Store.dispatch({
-    //   type: "OPEN_DRAWER",
-    //   open: true
-    // });
+    Store.dispatch({
+      type: "OPEN_DRAWER",
+      open: true
+    });
+    console.log("Drawer opening!");
   },
 
   render: function() {
@@ -31,6 +27,7 @@ var NavBar = React.createClass({
           onTitleTouchTap={this._goToIndex}
           onLeftIconButtonTouchTap={this._toggleAppDrawer}
         />
+        <DrawerLeft {...this.props}/>
       </div>
     );
   }
