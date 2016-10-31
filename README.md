@@ -16,6 +16,8 @@ A meteor app preset with React as the view layer with  deployment &  mobile app 
 * classnames
 * react-router
 * flexboxgrid
+* material-ui
+* redux
 
 ###Getting Started 🔥
 
@@ -45,6 +47,9 @@ meteor run
   |-- imports
   |   |-- api
   |   |   |-- #your serverside methods & tests go here myfile.tests.js
+  |   |-- reducers
+  |   |   |-- drawer.js #manages open/close drawer state
+  |   |   |-- index.js #combines reducers using redux
   |   |-- startup
   |   |   |-- client
   |   |       |-- index.js #imports routes and accounts config
@@ -76,6 +81,16 @@ If you need to pass additional parameters to spacejam, edit the `package.json` o
 #we use 8080 to run the tests concurrently with our server instance on 3000
 TEST_WATCH=1 spacejam test --driver-package practicalmeteor:mocha --port 8080
 ```
+
+###Material-UI
+
+Material-UI is a set of React components that implement Google's Material Design.
+
+You can checkout components and their markup here: http://www.material-ui.com/
+
+###flexboxgrid
+
+flexboxgrid is a grid system based on the flex display property. The markup is identical to Twitter bootstrap in most cases. See the examples here: http://flexboxgrid.com/
 
 ###Deployment 🚀
 
