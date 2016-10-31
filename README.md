@@ -111,3 +111,8 @@ MONGO_URL="mongodb://<username>:<password>@<mlab url>.mlab.com:<portnumber>/<dbn
 Use meteor image asset generator [here](https://github.com/lpender/meteor-assets).
 
 Follow the instructions and copy the resulting resources folder over the one in this project.
+
+###Running tests ✅
+
+On first run pass the terminal `npm run prep-test`
+every other time just run `npm run test`
