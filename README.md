@@ -17,6 +17,7 @@ A meteor app preset with React as the view layer with  deployment &  mobile app 
 * react-router
 * flexboxgrid
 * material-ui
+* redux
 
 ###Getting Started 🔥
 
@@ -46,6 +47,9 @@ meteor run
   |-- imports
   |   |-- api
   |   |   |-- #your serverside methods & tests go here myfile.tests.js
+  |   |-- reducers
+  |   |   |-- drawer.js #manages open/close drawer state
+  |   |   |-- index.js #combines reducers using redux
   |   |-- startup
   |   |   |-- client
   |   |       |-- index.js #imports routes and accounts config
