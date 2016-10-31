@@ -7,7 +7,7 @@ node_js: "6.3.0"
 before_install:
   - "curl https://install.meteor.com | /bin/sh"
   - export PATH="$HOME/.meteor:$PATH"
-  - "sudo npm install -g spacejam"
+  - "npm install -g spacejam"
   - "meteor npm install"
 
 script:
