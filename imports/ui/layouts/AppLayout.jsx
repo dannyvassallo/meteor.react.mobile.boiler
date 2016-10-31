@@ -33,7 +33,14 @@ class AppLayout extends React.Component {
       <MuiThemeProvider>
         <div>
           <NavBar {...this.state}/>
-          <AccountsUI />
+          <div className="container">
+            <div className="row-fluid">
+              <div className="col-xs-12">
+                <p>Test</p>
+                <AccountsUI />
+              </div>
+            </div>
+          </div>
           {this.props.children && React.cloneElement(this.props.children, this.state)}
         </div>
       </MuiThemeProvider>
