@@ -68,6 +68,15 @@ meteor run
 On first run pass the terminal `npm run prep-test`
 every other time just run `npm run test`
 
+If prep test fails run `sudo npm i spacejam -g`
+
+If you need to pass additional parameters to spacejam, edit the `package.json` or alter this command line chain:
+
+```shell
+#we use 8080 to run the tests concurrently with our server instance on 3000
+TEST_WATCH=1 spacejam test --driver-package practicalmeteor:mocha --port 8080
+```
+
 ###Deployment 🚀
 
 Deploy using the [Meteor Horse Buildpack](https://github.com/AdmitHub/meteor-buildpack-horse) and Heroku
