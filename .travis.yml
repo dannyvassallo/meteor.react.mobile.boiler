@@ -2,7 +2,7 @@ language: node_js
 
 sudo: required
 
-node_js: "6.3.0"
+node_js: "4.4.7"
 
 before_install:
   - "curl https://install.meteor.com | /bin/sh"
