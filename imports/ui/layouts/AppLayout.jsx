@@ -2,7 +2,8 @@ import React from 'react';
 import { render } from 'react-dom';
 import NavBar from '../components/NavBar.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import AccountsUI from '../components/AccountsUIWrapper.jsx';
+import SnackbarContainer from '../components/SnackBarContainer.jsx';
+import DrawerLeft from '../components/DrawerLeft.jsx';
 import Store from '../../reducers/index.js';
 
 class AppLayout extends React.Component {
@@ -33,15 +34,9 @@ class AppLayout extends React.Component {
       <MuiThemeProvider>
         <div>
           <NavBar {...this.state}/>
-          <div className="container">
-            <div className="row-fluid">
-              <div className="col-xs-12">
-                <p>Test</p>
-                <AccountsUI />
-              </div>
-            </div>
-          </div>
           {this.props.children && React.cloneElement(this.props.children, this.state)}
+          <DrawerLeft {...this.state}/>
+          <SnackbarContainer {...this.state}/>
         </div>
       </MuiThemeProvider>
     );

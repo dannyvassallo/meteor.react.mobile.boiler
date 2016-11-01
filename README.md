@@ -33,12 +33,14 @@ meteor npm install
 meteor run
 ```
 
-###File & Folder Structure
+###File & Folder Structure 📂
 
 ```shell
   |-- .gitignore
   |-- README.md
   |-- package.json
+  |-- npm-shrinkwrap.json
+  |-- .travis.yml
   |-- .meteor
   |-- client
   |   |-- main.html #render target
@@ -64,6 +66,8 @@ meteor run
   |       |   |-- #the apps layouts go here
   |       |-- pages
   |           |-- #Put your page components here
+  |       |-- helpers
+  |           |-- #Put your helper scripts here  
   |-- server
       |-- main.js #imports from api
 ```
@@ -82,13 +86,13 @@ If you need to pass additional parameters to spacejam, edit the `package.json` o
 TEST_WATCH=1 spacejam test --driver-package practicalmeteor:mocha --port 8080
 ```
 
-###Material-UI
+###Material-UI 🖥
 
 Material-UI is a set of React components that implement Google's Material Design.
 
 You can checkout components and their markup here: http://www.material-ui.com/
 
-###flexboxgrid
+###flexboxgrid 💪
 
 flexboxgrid is a grid system based on the flex display property. The markup is identical to Twitter bootstrap in most cases. See the examples here: http://flexboxgrid.com/
 

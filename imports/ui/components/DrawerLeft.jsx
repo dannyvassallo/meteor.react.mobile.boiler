@@ -1,9 +1,9 @@
 import React from 'react';
-import $ from 'jquery';
 import { Link, browserHistory } from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Store from '../../reducers/index.js';
+import setSnackBar from '../helpers/snackbar.js';
 
 class DrawerLeft extends React.Component {
 
@@ -13,6 +13,20 @@ class DrawerLeft extends React.Component {
       open: false
     });
     console.log("Drawer closing!");
+  }
+
+  _handleLogout(e){
+    e.preventDefault();
+    Meteor.logout(function(err){
+      if(!err){
+        setSnackBar(true, 'You\'ve been signed out successfully.', '#4CAF50');
+        browserHistory.push('/login');
+      }
+    });
+    Store.dispatch({
+      type: "CLOSE_DRAWER",
+      open: false
+    });
   }
 
   render() {
@@ -27,6 +41,15 @@ class DrawerLeft extends React.Component {
           disableSwipeToOpen={true}
         >
           <Link to="/" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Home</MenuItem></Link>
+          { Meteor.user() != null ? (
+              [ <Link key="logout" to="#" className="menu-link"><MenuItem onTouchTap={this._handleLogout}>Log Out</MenuItem></Link> ]
+            ) : (
+              [
+                <Link key="login" to="/login" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Login</MenuItem></Link>,
+                <Link key="signup" to="/signup" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Sign Up</MenuItem></Link>
+              ]
+            )
+          }
         </Drawer>
       </div>
     );
