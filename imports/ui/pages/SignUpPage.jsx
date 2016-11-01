@@ -37,10 +37,10 @@ export default class SignUpPage extends Component {
       <div>
         <div className="container">
           <div className="row-fluid">
-            <div className="col-xs-12">
+            <div className="col-xs-12 col-lg-6 col-lg-offset-3">
               <h1>Sign Up</h1>
             </div>
-            <form name="signupForm" id="signup-form" className="col-xs-12">
+            <form name="loginForm" id="login-form" className="col-xs-12 col-lg-6 col-lg-offset-3">
               <TextField
                 hintText="Please enter your username"
                 floatingLabelText="Username"
