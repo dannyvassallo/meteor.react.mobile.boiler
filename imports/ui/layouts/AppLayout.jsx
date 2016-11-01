@@ -3,6 +3,7 @@ import { render } from 'react-dom';
 import NavBar from '../components/NavBar.jsx';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SnackbarContainer from '../components/SnackBarContainer.jsx';
+import DrawerLeft from '../components/DrawerLeft.jsx';
 import Store from '../../reducers/index.js';
 
 class AppLayout extends React.Component {
@@ -34,6 +35,7 @@ class AppLayout extends React.Component {
         <div>
           <NavBar {...this.state}/>
           {this.props.children && React.cloneElement(this.props.children, this.state)}
+          <DrawerLeft {...this.state}/>
           <SnackbarContainer {...this.state}/>
         </div>
       </MuiThemeProvider>

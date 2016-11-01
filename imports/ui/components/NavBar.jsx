@@ -2,7 +2,6 @@ import React from 'react';
 import { IndexLink, Link, browserHistory } from 'react-router';
 import AppBar from 'material-ui/AppBar';
 import Store from '../../reducers/index.js';
-import DrawerLeft from './DrawerLeft.jsx';
 
 var NavBar = React.createClass({
 
@@ -21,15 +20,13 @@ var NavBar = React.createClass({
 
   render: function() {
     return (
-      <div className="navbar">
-        <AppBar
-          title="MeteorTodo"
-          iconClassNameRight="logo"
-          onTitleTouchTap={this._goToIndex}
-          onLeftIconButtonTouchTap={this._toggleAppDrawer}
-        />
-        <DrawerLeft {...this.props}/>
-      </div>
+      <AppBar
+        className="navbar"
+        title="MeteorTodo"
+        iconClassNameRight="logo"
+        onTitleTouchTap={this._goToIndex}
+        onLeftIconButtonTouchTap={this._toggleAppDrawer}
+      />
     );
   }
 

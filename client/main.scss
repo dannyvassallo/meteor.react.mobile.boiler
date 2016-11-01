@@ -5,6 +5,21 @@ body{
   font-family: 'Roboto', sans-serif;
 }
 
+html,
+body,
+#render-target{
+  height: 100%;
+}
+
+[data-reactroot]{
+  height: 100%;
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+}
+
 .checked{
   .text,
   .username{
@@ -37,4 +52,8 @@ body{
 
 .full-w{
   width: 100%;
+}
+
+.navbar{
+  position: fixed !important;
 }
