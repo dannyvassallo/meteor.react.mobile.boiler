@@ -22,12 +22,21 @@ Meteor.startup( () => {
     browserHistory.replace(location);
   }
 
+  function redirectIfSignedIn(){
+    if(Meteor.user() != null){
+      console.log("Redirecting Signed In User");
+      browserHistory.replace('/');
+    } else {
+      console.log("User is NOT there");
+    }
+  }
+
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ AppLayout }>
         <IndexRoute component={ TaskPageContainer } />
-        <Route path="login" component={LoginPage}/>
-        <Route path="signup" component={SignUpPage}/>
+        <Route path="login" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={LoginPage}/>
+        <Route path="signup" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={SignUpPage}/>
         <Route path="*" component={ NotFound } />
       </Route>
     </Router>,

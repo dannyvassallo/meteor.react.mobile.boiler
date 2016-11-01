@@ -16,8 +16,11 @@ class DrawerLeft extends React.Component {
 
   _handleLogout(e){
     e.preventDefault();
-    Meteor.logout();
-    browserHistory.push('/login');
+    Meteor.logout(function(err){
+      if(!err){
+        browserHistory.push('/login');
+      }
+    });
     Store.dispatch({
       type: "CLOSE_DRAWER",
       open: false
@@ -36,9 +39,15 @@ class DrawerLeft extends React.Component {
           disableSwipeToOpen={true}
         >
           <Link to="/" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Home</MenuItem></Link>
-          <Link to="/login" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Login</MenuItem></Link>
-          <Link to="/signup" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Sign Up</MenuItem></Link>
-          <Link to="#" className="menu-link"><MenuItem onTouchTap={this._handleLogout}>Log Out</MenuItem></Link>
+          { Meteor.user() != null ? (
+              [ <Link key="logout" to="#" className="menu-link"><MenuItem onTouchTap={this._handleLogout}>Log Out</MenuItem></Link> ]
+            ) : (
+              [
+                <Link key="login" to="/login" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Login</MenuItem></Link>,
+                <Link key="signup" to="/signup" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Sign Up</MenuItem></Link>
+              ]
+            )
+          }
         </Drawer>
       </div>
     );

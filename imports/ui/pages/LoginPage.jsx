@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Link } from 'react-router'
 import { createContainer } from 'meteor/react-meteor-data'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
 
 export default class LoginPage extends Component {
   constructor(props){
     super(props);
     this.state = {
-      error: ''
+      error: '',
     };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -20,6 +22,7 @@ export default class LoginPage extends Component {
         this.setState({
           error: err.reason
         });
+        console.log(err.reason);
       } else {
         browserHistory.push('/');
       }
@@ -28,47 +31,48 @@ export default class LoginPage extends Component {
 
   render(){
     const error = this.state.error;
+    { error.length > 0 ?
+        alert(error)
+      :''}
+
+    const buttonStyle = {
+      marginTop: "20px"
+    }
+
     return (
-      <div className="modal show">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="text-center">Login</h1>
-            </div>
-            <div className="modal-body">
-              { error.length > 0 ?
-                <div className="alert alert-danger fade in">{error}</div>
-                :''}
-              <form  id="login-form"
-                    className="form col-md-12 center-block"
-                    onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <input type="text"
-                        id="login-name"
-                        className="form-control input-lg"
-                        placeholder="name"/>
-                </div>
-                <div className="form-group">
-                  <input type="password"
-                        id="login-password"
-                        className="form-control input-lg"
-                        placeholder="password"/>
-                </div>
-                <div className="form-group text-center">
-                  <input type="submit"
-                        id="login-button"
-                        className="btn btn-primary btn-lg btn-block"
-                        value="Login" />
-                </div>
-                <div className="form-group text-center">
-                  <p className="text-center">
-                    Don't have an account? Register <Link to="/signup">here</Link>
-                  </p>
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer" style={{borderTop: 0}}></div>
+      <div className="container">
+        <div className="row-fluid">
+          <div className="col-xs-12">
+            <h1>Login</h1>
           </div>
+          <form name="loginForm" id="login-form" className="col-xs-12">
+            <TextField
+              hintText="Please enter your username"
+              floatingLabelText="Username"
+              id="login-name"
+              fullWidth={true}
+            />
+            <br />
+            <TextField
+              hintText="Please enter your password"
+              floatingLabelText="Password"
+              type="password"
+              id="login-password"
+              fullWidth={true}
+            />
+            <br />
+            <RaisedButton
+              id="login-button"
+              label="login"
+              fullWidth={true}
+              primary={true}
+              style={buttonStyle}
+              onTouchTap={this.handleSubmit}
+            />
+            <br />
+            <p className="text-center"> Don't have an account? Register <Link to="/signup">here</Link></p>
+            <br />
+          </form>
         </div>
       </div>
     );
