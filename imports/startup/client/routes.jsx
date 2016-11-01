@@ -23,7 +23,7 @@ Meteor.startup( () => {
   }
 
   function redirectIfSignedIn(){
-    if(Meteor.user() != null){
+    if(Meteor.userId() != null){
       console.log("Redirecting Signed In User");
       browserHistory.replace('/');
     } else {
