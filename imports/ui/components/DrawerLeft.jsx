@@ -1,5 +1,4 @@
 import React from 'react';
-import $ from 'jquery';
 import { Link, browserHistory } from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';

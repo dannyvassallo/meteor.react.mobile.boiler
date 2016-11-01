@@ -1,4 +1,4 @@
-import { combineReducers, createStore } from 'redux'
+import { combineReducers, createStore } from 'react-redux'
 import drawer from './drawer'
 
 const reducers = combineReducers({
