@@ -1,12 +1,14 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Link } from 'react-router'
+import { createContainer } from 'meteor/react-meteor-data'
+import TextField from 'material-ui/TextField';
+import RaisedButton from 'material-ui/RaisedButton';
+import Snackbar from 'material-ui/Snackbar';
+import setSnackBar from '../helpers/snackbar.js';
 
-export default class SignupPage extends Component {
+export default class SignUpPage extends Component {
   constructor(props){
     super(props);
-    this.state = {
-      error: ''
-    };
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
@@ -17,53 +19,55 @@ export default class SignupPage extends Component {
     this.setState({error: "test"});
     Accounts.createUser({username: name, password: password}, (err) => {
       if(err){
-        this.setState({
-          error: err.reason
-        });
+        setSnackBar(true, err.reason, '#F44336');
       } else {
+        setSnackBar(true, 'You\'ve signed up successfully.', '#4CAF50');
         browserHistory.push('/');
       }
     });
   }
 
   render(){
-    const error = this.state.error;
+
+    const buttonStyle = {
+      marginTop: "20px"
+    }
+
     return (
-      <div className="modal show">
-        <div className="modal-dialog">
-          <div className="modal-content">
-            <div className="modal-header">
-              <h1 className="text-center">Sign up</h1>
+      <div>
+        <div className="container">
+          <div className="row-fluid">
+            <div className="col-xs-12">
+              <h1>Sign Up</h1>
             </div>
-            <div className="modal-body">
-              { error.length > 0 ?
-                <div className="alert alert-danger fade in">{error}</div>
-                :''}
-              <form  id="login-form"
-                    className="form col-md-12 center-block"
-                    onSubmit={this.handleSubmit}>
-                <div className="form-group">
-                  <input type="text" id="signup-name"
-                        className="form-control input-lg" placeholder="name"/>
-                </div>
-                <div className="form-group">
-                  <input type="password" id="signup-password"
-                        className="form-control input-lg"
-                        placeholder="password"/>
-                </div>
-                <div className="form-group">
-                  <input type="submit" id="login-button"
-                        className="btn btn-lg btn-primary btn-block"
-                        value="Sign Up" />
-                </div>
-                <div className="form-group">
-                  <p className="text-center">
-                    Already have an account? Login <Link to="/login">here</Link>
-                  </p>
-                </div>
-              </form>
-            </div>
-            <div className="modal-footer" style={{borderTop: 0}}></div>
+            <form name="signupForm" id="signup-form" className="col-xs-12">
+              <TextField
+                hintText="Please enter your username"
+                floatingLabelText="Username"
+                id="signup-name"
+                fullWidth={true}
+              />
+              <br />
+              <TextField
+                hintText="Please enter your password"
+                floatingLabelText="Password"
+                type="password"
+                id="signup-password"
+                fullWidth={true}
+              />
+              <br />
+              <RaisedButton
+                id="signup-button"
+                label="signup"
+                fullWidth={true}
+                primary={true}
+                style={buttonStyle}
+                onTouchTap={this.handleSubmit}
+              />
+              <br />
+              <p className="text-center"> Already have an account? Login <Link to="/login">here</Link></p>
+              <br />
+            </form>
           </div>
         </div>
       </div>
