@@ -2,7 +2,6 @@ import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
 import { createContainer } from 'meteor/react-meteor-data';
-
 import { Tasks } from '../../api/tasks.js';
 import Task from '../components/Task.jsx';
 import { List, ListItem } from 'material-ui/List';
@@ -11,8 +10,7 @@ import Subheader from 'material-ui/Subheader';
 import Checkbox from 'material-ui/Checkbox';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
-import FloatingActionButton from 'material-ui/FloatingActionButton';
-import ContentAdd from 'material-ui/svg-icons/content/add';
+import FloatingActionButtonMenu from '../components/Fab.jsx';
 
 export class TaskPage extends Component {
 
@@ -100,9 +98,6 @@ export class TaskPage extends Component {
                         id="newTaskInput"
                         placeholder="Type to add new tasks"
                       />
-                      <FloatingActionButton type="submit">
-                        <ContentAdd />
-                      </FloatingActionButton>
                     </form> : ''
                   }
                   </ListItem>
@@ -110,6 +105,7 @@ export class TaskPage extends Component {
               </div>
             </div>
           </div>
+          <FloatingActionButtonMenu />
         </div>
     );
   }
