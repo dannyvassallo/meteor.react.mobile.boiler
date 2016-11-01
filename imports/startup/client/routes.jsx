@@ -31,10 +31,19 @@ Meteor.startup( () => {
     }
   }
 
+  function redirectUnlessSignedIn(){
+    if(Meteor.userId() === null){
+      console.log("Redirecting Visitor");
+      browserHistory.replace('/login');
+    } else {
+      console.log("User is there");
+    }
+  }
+
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ AppLayout }>
-        <IndexRoute component={ TaskPageContainer } />
+        <IndexRoute onEnter={ redirectUnlessSignedIn } component={ TaskPageContainer } />
         <Route path="login" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={LoginPage}/>
         <Route path="signup" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={SignUpPage}/>
         <Route path="*" component={ NotFound } />
