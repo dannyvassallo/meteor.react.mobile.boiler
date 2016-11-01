@@ -64,6 +64,8 @@ meteor run
   |       |   |-- #the apps layouts go here
   |       |-- pages
   |           |-- #Put your page components here
+  |       |-- helpers
+  |           |-- #Put your helper scripts here  
   |-- server
       |-- main.js #imports from api
 ```
