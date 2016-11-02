@@ -62,7 +62,6 @@ export class TaskPage extends Component {
   render(){
 
     const paperStyle = {
-      marginTop: '40px',
       width: '100%',
       display: 'inline-block',
     };
