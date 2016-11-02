@@ -34,7 +34,9 @@ class AppLayout extends React.Component {
       <MuiThemeProvider>
         <div>
           <NavBar {...this.state}/>
-          {this.props.children && React.cloneElement(this.props.children, this.state)}
+          <div className="container">
+            {this.props.children && React.cloneElement(this.props.children, this.state)}
+          </div>
           <DrawerLeft {...this.state}/>
           <SnackbarContainer {...this.state}/>
         </div>

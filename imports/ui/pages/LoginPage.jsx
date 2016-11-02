@@ -32,42 +32,38 @@ export default class LoginPage extends Component {
     }
 
     return (
-      <div>
-        <div className="container">
-          <div className="row-fluid">
-            <div className="col-xs-12 col-lg-6 col-lg-offset-3">
-              <h1>Login</h1>
-            </div>
-            <form name="loginForm" id="login-form" className="col-xs-12 col-lg-6 col-lg-offset-3">
-              <TextField
-                hintText="Please enter your username"
-                floatingLabelText="Username"
-                id="login-name"
-                fullWidth={true}
-              />
-              <br />
-              <TextField
-                hintText="Please enter your password"
-                floatingLabelText="Password"
-                type="password"
-                id="login-password"
-                fullWidth={true}
-              />
-              <br />
-              <RaisedButton
-                id="login-button"
-                label="login"
-                fullWidth={true}
-                primary={true}
-                style={buttonStyle}
-                onTouchTap={this.handleSubmit}
-              />
-              <br />
-              <p className="text-center"> Don't have an account? Register <Link to="/signup">here</Link></p>
-              <br />
-            </form>
-          </div>
+      <div className="row-fluid">
+        <div className="col-xs-12 col-lg-6 col-lg-offset-3">
+          <h1>Login</h1>
         </div>
+        <form name="loginForm" id="login-form" className="col-xs-12 col-lg-6 col-lg-offset-3">
+          <TextField
+            hintText="Please enter your username"
+            floatingLabelText="Username"
+            id="login-name"
+            fullWidth={true}
+          />
+          <br />
+          <TextField
+            hintText="Please enter your password"
+            floatingLabelText="Password"
+            type="password"
+            id="login-password"
+            fullWidth={true}
+          />
+          <br />
+          <RaisedButton
+            id="login-button"
+            label="login"
+            fullWidth={true}
+            primary={true}
+            style={buttonStyle}
+            onTouchTap={this.handleSubmit}
+          />
+          <br />
+          <p className="text-center"> Don't have an account? Register <Link to="/signup">here</Link></p>
+          <br />
+        </form>
       </div>
     );
   }
