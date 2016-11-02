@@ -47,6 +47,10 @@ var FloatingActionButtonMenu = React.createClass({
 
   },
 
+  componentWillUnmount() {
+    $(window).unbind('scroll');
+  },
+
   render: function() {
     return (
       <FloatingActionButton
