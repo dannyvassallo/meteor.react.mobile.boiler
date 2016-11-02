@@ -2,7 +2,9 @@
 
 # ⚛ React Mobile App Boilerplate for Meteor ☄
 
-A meteor app preset with React as the view layer with  deployment &  mobile app instructions.
+Starter TODO app built in meteor. View layer rendered with react using material-ui components, redux to manage state, react router, and flexboxgrid for responsive behavior.
+
+Quick and easy deploy to heroku with instructions to build out for android.
 
 ###Technologies Used 🤖
 
