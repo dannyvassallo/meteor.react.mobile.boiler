@@ -67,45 +67,41 @@ export class TaskPage extends Component {
     };
 
     return(
-        <div>
-          <div className="container">
-            <div className="row-fluid">
-              <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-12 col-lg-offset-0">
-                <Paper style={paperStyle} zDepth={1}>
-                  <List>
-                    <Subheader>
-                      <h2 className="task-list-header">Task List ({this.props.incompleteCount})</h2>
-                      <Checkbox
-                        checked={this.state.hideCompleted}
-                        onClick={this.toggleHideCompleted.bind(this)}
-                        label="Hide Completed"
-                        labelPosition="left"
-                        className="hide-completed"
-                      />
-                    </Subheader>
-                    <Divider inset={true} />
-                  </List>
-                  {this.renderTasks()}
-                  <ListItem
-                    insetChildren={true}
-                    className="form-list-item"
-                  >
-                  { this.props.currentUser ?
-                    <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                      <TextField
-                        type="text"
-                        id="newTaskInput"
-                        placeholder="Type to add new tasks"
-                      />
-                    </form> : ''
-                  }
-                  </ListItem>
-                </Paper>
-              </div>
-            </div>
-          </div>
+      <div className="row-fluid">
+        <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-12 col-lg-offset-0">
+          <Paper style={paperStyle} zDepth={1}>
+            <List>
+              <Subheader>
+                <h2 className="task-list-header">Task List ({this.props.incompleteCount})</h2>
+                <Checkbox
+                  checked={this.state.hideCompleted}
+                  onClick={this.toggleHideCompleted.bind(this)}
+                  label="Hide Completed"
+                  labelPosition="left"
+                  className="hide-completed"
+                />
+              </Subheader>
+              <Divider inset={true} />
+            </List>
+            {this.renderTasks()}
+            <ListItem
+              insetChildren={true}
+              className="form-list-item"
+            >
+            { this.props.currentUser ?
+              <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
+                <TextField
+                  type="text"
+                  id="newTaskInput"
+                  placeholder="Type to add new tasks"
+                />
+              </form> : ''
+            }
+            </ListItem>
+          </Paper>
           <FloatingActionButtonMenu />
         </div>
+      </div>
     );
   }
 }
