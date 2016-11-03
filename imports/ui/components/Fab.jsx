@@ -9,30 +9,28 @@ let fabStyle = {
   right: '30px'
 };
 
+var lastScrollTop = 0;
+
 var FloatingActionButtonMenu = React.createClass({
 
   getInitialState: function() {
     return {
-      lastScrollTop: 0,
       fabVisible: true
     };
   },
 
   handleScroll: _.throttle(function(event){
-    var st = $(window).scrollTop();
-    var self = this,
-    lastScrollTop = this.state.lastScrollTop
+    var st = $(window).scrollTop(),
+    self = this;
     setTimeout(function(){
       if (st >= lastScrollTop){
         self.setState({
           fabVisible: false,
-          lastScrollTop: st
         });
         console.log('down', st, lastScrollTop)
       } else {
         self.setState({
           fabVisible: true,
-          lastScrollTop: st
         });
         console.log('up', st, lastScrollTop)
       }
