@@ -53,7 +53,7 @@ var FloatingActionButtonMenu = React.createClass({
   },
 
   componentWillUnmount() {
-    $(window).off('swipe scroll', this.handleScroll);
+    $(window).off('scroll', this.handleScroll);
   },
 
   render: function() {
