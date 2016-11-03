@@ -18,8 +18,8 @@ var FloatingActionButtonMenu = React.createClass({
     };
   },
 
-  scrollEvent: function(scrollEvent) {
-    $(window).on(scrollEvent, function(event){
+  scrollEvent: function() {
+    $(window).on('touchmove scroll', function(event){
       var st = $(window).scrollTop();
       var self = this;
       lastScrollTop = this.state.lastScrollTop
@@ -47,8 +47,7 @@ var FloatingActionButtonMenu = React.createClass({
   },
 
   componentWillMount: function() {
-    this.scrollEvent('touchstart');
-    this.scrollEvent('scroll');
+    this.scrollEvent();
   },
 
   componentWillUnmount() {
