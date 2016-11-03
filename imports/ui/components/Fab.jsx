@@ -11,19 +11,15 @@ let fabStyle = {
 
 var FloatingActionButtonMenu = React.createClass({
 
-  getInitialState () {
+  getInitialState: function() {
     return {
       lastScrollTop: 0,
       fabVisible: true
     };
   },
 
-  expandMenu: function(){
-    console.log('touched');
-  },
-
-  componentDidMount: function() {
-    $(window).scroll(function(event){
+  scrollEvent: function(scrollEvent) {
+    $(window).on(scrollEvent, function(event){
       var st = $(window).scrollTop();
       var self = this;
       lastScrollTop = this.state.lastScrollTop
@@ -44,10 +40,19 @@ var FloatingActionButtonMenu = React.createClass({
         lastScrollTop = st;
       }, 10);
     }.bind(this));
+  },
 
+  expandMenu: function(){
+    console.log('touched');
+  },
+
+  componentDidMount: function() {
+    this.scrollEvent('touchstart');
+    this.scrollEvent('scroll');
   },
 
   componentWillUnmount() {
+    $(window).unbind('touchstart');
     $(window).unbind('scroll');
   },
 
