@@ -9,7 +9,18 @@ let fabStyle = {
   right: '30px'
 };
 
-var lastScrollTop = 0;
+var lastScrollTop = 0,
+isScrolling = false;
+
+$.fn.scrollEnd = function(callback, timeout) {
+  $(this).scroll(function(){
+    var $this = $(this);
+    if ($this.data('scrollTimeout')) {
+      clearTimeout($this.data('scrollTimeout'));
+    }
+    $this.data('scrollTimeout', setTimeout(callback,timeout));
+  });
+};
 
 var FloatingActionButtonMenu = React.createClass({
 
@@ -19,23 +30,25 @@ var FloatingActionButtonMenu = React.createClass({
     };
   },
 
-  handleScroll: _.throttle(function(event){
+  fabVisiblility: function(){
     var st = $(window).scrollTop(),
     self = this;
-    setTimeout(function(){
-      if (st >= lastScrollTop){
-        self.setState({
-          fabVisible: false,
-        });
-        console.log('down', st, lastScrollTop)
-      } else {
-        self.setState({
-          fabVisible: true,
-        });
-        console.log('up', st, lastScrollTop)
-      }
-      lastScrollTop = st;
-    }, 10);
+    if (st >= lastScrollTop){
+      self.setState({
+        fabVisible: false,
+      });
+      console.log('down', st, lastScrollTop)
+    } else {
+      self.setState({
+        fabVisible: true,
+      });
+      console.log('up', st, lastScrollTop)
+    }
+    lastScrollTop = st;
+  },
+
+  handleScroll: _.throttle(function(event){
+    isScrolling = true;
   }, 50),
 
   scrollEvent: function() {
@@ -48,6 +61,11 @@ var FloatingActionButtonMenu = React.createClass({
 
   componentWillMount: function() {
     this.scrollEvent();
+    var self = this;
+    $(window).scrollEnd(function(){
+      isScrolling = false;
+      self.fabVisiblility();
+    }, 50);
   },
 
   componentWillUnmount() {
