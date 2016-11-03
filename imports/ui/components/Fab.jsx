@@ -61,7 +61,7 @@ var FloatingActionButtonMenu = React.createClass({
 
   componentWillMount: function() {
     this.scrollEvent();
-    var self = this;
+    self = this;
     $(window).scrollEnd(function(){
       isScrolling = false;
       self.fabVisiblility();
@@ -70,6 +70,7 @@ var FloatingActionButtonMenu = React.createClass({
 
   componentWillUnmount() {
     $(window).off('scroll', this.handleScroll);
+    $(window).scrollEnd = null
   },
 
   render: function() {
