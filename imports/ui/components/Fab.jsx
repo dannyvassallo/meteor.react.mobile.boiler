@@ -46,7 +46,7 @@ var FloatingActionButtonMenu = React.createClass({
     console.log('touched');
   },
 
-  componentDidMount: function() {
+  componentWillMount: function() {
     this.scrollEvent('touchstart');
     this.scrollEvent('scroll');
   },
