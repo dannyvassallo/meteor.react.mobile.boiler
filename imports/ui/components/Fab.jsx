@@ -19,7 +19,7 @@ var FloatingActionButtonMenu = React.createClass({
   },
 
   scrollEvent: function() {
-    $(window).on('touchmove scroll', function(event){
+    $(window).on('swipe scroll', function(event){
       var st = $(window).scrollTop();
       var self = this;
       lastScrollTop = this.state.lastScrollTop
