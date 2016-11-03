@@ -18,28 +18,30 @@ var FloatingActionButtonMenu = React.createClass({
     };
   },
 
+  handleScroll: _.throttle(function(event){
+    var st = $(window).scrollTop();
+    var self = this,
+    lastScrollTop = this.state.lastScrollTop
+    setTimeout(function(){
+      if (st >= lastScrollTop){
+        self.setState({
+          fabVisible: false,
+          lastScrollTop: st
+        });
+        console.log('down', st, lastScrollTop)
+      } else {
+        self.setState({
+          fabVisible: true,
+          lastScrollTop: st
+        });
+        console.log('up', st, lastScrollTop)
+      }
+      lastScrollTop = st;
+    }, 10);
+  }, 50),
+
   scrollEvent: function() {
-    $(window).on('swipe scroll', function(event){
-      var st = $(window).scrollTop();
-      var self = this;
-      lastScrollTop = this.state.lastScrollTop
-      setTimeout(function(){
-        if (st >= lastScrollTop){
-          self.setState({
-            fabVisible: false,
-            lastScrollTop: st
-          });
-          console.log('down', st, lastScrollTop)
-        } else {
-          self.setState({
-            fabVisible: true,
-            lastScrollTop: st
-          });
-          console.log('up', st, lastScrollTop)
-        }
-        lastScrollTop = st;
-      }, 10);
-    }.bind(this));
+    $(window).on('scroll', this.handleScroll);
   },
 
   expandMenu: function(){
@@ -51,8 +53,7 @@ var FloatingActionButtonMenu = React.createClass({
   },
 
   componentWillUnmount() {
-    $(window).unbind('touchstart');
-    $(window).unbind('scroll');
+    $(window).off('swipe scroll', this.handleScroll);
   },
 
   render: function() {
