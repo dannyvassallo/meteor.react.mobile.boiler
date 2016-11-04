@@ -18,27 +18,25 @@ var FloatingActionButtonMenu = React.createClass({
     };
   },
 
-  handleScroll: _.throttle(function(event){
+  handleScroll: function(event){
     var st = $(window).scrollTop();
     var self = this,
     lastScrollTop = this.state.lastScrollTop
-    setTimeout(function(){
-      if (st >= lastScrollTop){
-        self.setState({
-          fabVisible: false,
-          lastScrollTop: st
-        });
-        console.log('down', st, lastScrollTop)
-      } else {
-        self.setState({
-          fabVisible: true,
-          lastScrollTop: st
-        });
-        console.log('up', st, lastScrollTop)
-      }
-      lastScrollTop = st;
-    }, 10);
-  }, 50),
+    if (st >= lastScrollTop){
+      self.setState({
+        fabVisible: false,
+        lastScrollTop: st
+      });
+      console.log('down', st, lastScrollTop)
+    } else {
+      self.setState({
+        fabVisible: true,
+        lastScrollTop: st
+      });
+      console.log('up', st, lastScrollTop)
+    }
+    lastScrollTop = st;
+  },
 
   scrollEvent: function() {
     $(window).on('scroll', this.handleScroll);
