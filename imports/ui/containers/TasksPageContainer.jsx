@@ -11,6 +11,7 @@ import Checkbox from 'material-ui/Checkbox';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import FloatingActionButtonMenu from '../components/Fab.jsx';
+import TaskForm from '../components/TaskForm.jsx';
 
 export class TaskPage extends Component {
 
@@ -100,6 +101,7 @@ export class TaskPage extends Component {
             </ListItem>
           </Paper>
           <FloatingActionButtonMenu />
+          <TaskForm />
         </div>
       </div>
     );
