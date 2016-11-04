@@ -26,12 +26,12 @@ var FloatingActionButtonMenu = React.createClass({
       self.setState({
         fabVisible: false
       });
-      console.log('down', st, lastScrollTop)
+      console.log('down', st, lastScrollTop);
     } else {
       self.setState({
         fabVisible: true
       });
-      console.log('up', st, lastScrollTop)
+      console.log('up', st, lastScrollTop);
     }
     lastScrollTop = st;
   },
@@ -49,7 +49,7 @@ var FloatingActionButtonMenu = React.createClass({
   },
 
   componentWillUnmount() {
-    $(window).off('swipe scroll', this.handleScroll);
+    $(window).off('scroll', this.handleScroll);
   },
 
   render: function() {
