@@ -29,18 +29,6 @@ export class TaskPage extends Component {
     });
   }
 
-  handleSubmit(event) {
-    event.preventDefault();
-
-    // Find the text field via the React ref
-    const text = $('#newTaskInput').val().trim();
-
-    Meteor.call('tasks.insert', text);
-
-    // Clear form
-    $('#newTaskInput').val('');
-  }
-
   renderTasks() {
     let filteredTasks = this.props.tasks;
     if (this.state.hideCompleted) {
@@ -85,23 +73,9 @@ export class TaskPage extends Component {
               <Divider inset={true} />
             </List>
             {this.renderTasks()}
-            <ListItem
-              insetChildren={true}
-              className="form-list-item"
-            >
-            { this.props.currentUser ?
-              <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                <TextField
-                  type="text"
-                  id="newTaskInput"
-                  placeholder="Type to add new tasks"
-                />
-              </form> : ''
-            }
-            </ListItem>
           </Paper>
-          <FloatingActionButtonMenu />
-          <TaskForm />
+          <FloatingActionButtonMenu open={this.props.modal.open} />
+          <TaskForm open={this.props.modal.open} />
         </div>
       </div>
     );

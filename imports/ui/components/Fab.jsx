@@ -41,12 +41,11 @@ var FloatingActionButtonMenu = React.createClass({
   },
 
   openForm: function(){
-    handleOpen = () => {
-      Store.dispatch({
-        type: "TASK_FORM_OPEN",
-        open: true
-      });
-    };
+    Store.dispatch({
+      type: "MODAL_OPEN",
+      open: true
+    });
+    console.log(this.props.open);
   },
 
   componentWillMount: function() {

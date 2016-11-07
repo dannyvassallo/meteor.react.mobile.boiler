@@ -1,4 +1,4 @@
-export default function taskform(state, action) {
+export default function modal(state, action) {
   if (typeof state === 'undefined') {
     return {
       open: false
@@ -6,7 +6,7 @@ export default function taskform(state, action) {
   }
 
   switch (action.type) {
-    case 'TASK_FORM_OPEN':
+    case 'MODAL_OPEN':
       return { ...state, open: action.open }
     default:
       return state

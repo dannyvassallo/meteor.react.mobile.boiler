@@ -1,12 +1,12 @@
 import { combineReducers, createStore } from 'redux'
 import drawer from './drawer'
 import snackbar from './snackbar'
-import taskform from './taskform'
+import modal from './modal'
 
 const reducers = combineReducers({
   drawer,
   snackbar,
-  taskform
+  modal
 });
 
 module.exports = createStore(reducers);
