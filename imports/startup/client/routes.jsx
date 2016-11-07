@@ -4,7 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import AppLayout from '../../ui/layouts/AppLayout.jsx';
 
-import { Index } from '../../ui/pages/Index.jsx';
+import { AdminRoute } from '../../ui/pages/AdminRoute.jsx';
 // When you export default you DON'T need {} otherwise, you will.
 import TasksPageContainer from '../../ui/containers/TasksPageContainer.jsx';
 import NotFound from '../../ui/pages/NotFound.jsx';
@@ -40,12 +40,22 @@ Meteor.startup( () => {
     }
   }
 
+  function redirectUnlessAdmin(){
+    if(Meteor.userId() != null && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+      console.log("Redirecting Non-Admin");
+      browserHistory.replace('/login');
+    } else {
+      console.log("Admin is present");
+    }
+  }
+
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ AppLayout }>
         <IndexRoute onEnter={ redirectUnlessSignedIn } component={ TaskPageContainer } />
         <Route path="login" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={LoginPage}/>
         <Route path="signup" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={SignUpPage}/>
+        <Route path="admin" onChange={ redirectUnlessAdmin } onEnter={ redirectUnlessAdmin } component={ AdminRoute }/>
         <Route path="*" component={ NotFound } />
       </Route>
     </Router>,
