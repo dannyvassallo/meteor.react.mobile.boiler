@@ -40,8 +40,12 @@ var FloatingActionButtonMenu = React.createClass({
     $(window).on('scroll', this.handleScroll);
   },
 
-  expandMenu: function(){
-    console.log('touched');
+  openForm: function(){
+    Store.dispatch({
+      type: "MODAL_OPEN",
+      open: true
+    });
+    console.log(this.props.open);
   },
 
   componentWillMount: function() {
@@ -55,7 +59,7 @@ var FloatingActionButtonMenu = React.createClass({
   render: function() {
     return (
       <FloatingActionButton
-        onTouchTap={this.expandMenu}
+        onTouchTap={this.openForm}
         style={fabStyle}
         className={this.state.fabVisible ? ('grow') : ('shrink')}
       >

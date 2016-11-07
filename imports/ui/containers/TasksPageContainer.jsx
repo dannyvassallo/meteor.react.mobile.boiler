@@ -11,6 +11,7 @@ import Checkbox from 'material-ui/Checkbox';
 import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import FloatingActionButtonMenu from '../components/Fab.jsx';
+import TaskForm from '../components/TaskForm.jsx';
 
 export class TaskPage extends Component {
 
@@ -26,18 +27,6 @@ export class TaskPage extends Component {
     this.setState({
       hideCompleted: !this.state.hideCompleted,
     });
-  }
-
-  handleSubmit(event) {
-    event.preventDefault();
-
-    // Find the text field via the React ref
-    const text = $('#newTaskInput').val().trim();
-
-    Meteor.call('tasks.insert', text);
-
-    // Clear form
-    $('#newTaskInput').val('');
   }
 
   renderTasks() {
@@ -84,22 +73,9 @@ export class TaskPage extends Component {
               <Divider inset={true} />
             </List>
             {this.renderTasks()}
-            <ListItem
-              insetChildren={true}
-              className="form-list-item"
-            >
-            { this.props.currentUser ?
-              <form className="new-task" onSubmit={this.handleSubmit.bind(this)} >
-                <TextField
-                  type="text"
-                  id="newTaskInput"
-                  placeholder="Type to add new tasks"
-                />
-              </form> : ''
-            }
-            </ListItem>
           </Paper>
-          <FloatingActionButtonMenu />
+          <FloatingActionButtonMenu open={this.props.modal.open} />
+          <TaskForm open={this.props.modal.open} />
         </div>
       </div>
     );
