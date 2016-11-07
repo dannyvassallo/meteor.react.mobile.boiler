@@ -20,6 +20,7 @@ Quick and easy deploy to heroku with instructions to build out for android.
 * flexboxgrid
 * material-ui
 * redux
+* alanning:roles
 
 ###Getting Started 🔥
 
