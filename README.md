@@ -99,6 +99,20 @@ You can checkout components and their markup here: http://www.material-ui.com/
 
 flexboxgrid is a grid system based on the flex display property. The markup is identical to Twitter bootstrap in most cases. See the examples here: http://flexboxgrid.com/
 
+###First Admin
+
+Follow the following instructions to create the initial admin user:
+
+```javascript
+// open your chrome console after you've logged in and run this:
+Meteor.userId();
+// copy out the returned id
+```
+
+With your new User ID copied, clone `settings.json.example` and rename it to `settings.json` and paste it in as a string value for the adminId attribute.
+
+Save, and restart the server with `--settings settings.json` as a flag. You should be able to visit `localhost:3000/admin` in your browser if this worked.
+
 ###Deployment 🚀
 
 Deploy using the [Meteor Horse Buildpack](https://github.com/AdmitHub/meteor-buildpack-horse) and Heroku
