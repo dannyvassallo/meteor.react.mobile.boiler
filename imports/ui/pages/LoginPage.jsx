@@ -4,12 +4,17 @@ import { createContainer } from 'meteor/react-meteor-data'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
+import setLoading from '../helpers/loader.js';
 import setSnackBar from '../helpers/snackbar.js';
 
 export default class LoginPage extends Component {
   constructor(props){
     super(props);
     this.handleSubmit = this.handleSubmit.bind(this);
+  }
+
+  componentDidMount(){
+    setLoading(false);
   }
 
   handleSubmit(e){

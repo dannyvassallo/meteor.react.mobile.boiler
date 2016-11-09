@@ -12,12 +12,13 @@ import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import FloatingActionButtonMenu from '../components/Fab.jsx';
 import TaskForm from '../components/TaskForm.jsx';
+import setLoading from '../helpers/loader.js';
+import Store from '../../reducers/index.js';
 
 export class TaskPage extends Component {
 
   constructor(props) {
     super(props);
-
     this.state = {
       hideCompleted: false,
     };
@@ -27,6 +28,10 @@ export class TaskPage extends Component {
     this.setState({
       hideCompleted: !this.state.hideCompleted,
     });
+  }
+
+  componentWillMount(){
+    setLoading(false);
   }
 
   renderTasks() {
@@ -89,7 +94,12 @@ TaskPage.propTypes = {
 };
 
 export default TaskPageContainer = createContainer(() => {
-  Meteor.subscribe('tasks');
+  Meteor.subscribe('tasks', {
+    onReady: function () {
+      console.log('HIT');
+      setLoading(false);
+    },
+  });
 
   return {
     tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
