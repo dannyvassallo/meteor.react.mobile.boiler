@@ -30,10 +30,6 @@ export class TaskPage extends Component {
     });
   }
 
-  componentWillMount(){
-    setLoading(false);
-  }
-
   renderTasks() {
     let filteredTasks = this.props.tasks;
     if (this.state.hideCompleted) {
@@ -94,10 +90,10 @@ TaskPage.propTypes = {
 };
 
 export default TaskPageContainer = createContainer(() => {
+
   Meteor.subscribe('tasks', {
     onReady: function () {
       console.log('HIT');
-      setLoading(false);
     },
   });
 

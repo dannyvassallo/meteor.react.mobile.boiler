@@ -18,7 +18,6 @@ class AppLayout extends React.Component {
 
   componentWillMount(){
     console.log(this.state);
-    setLoading(false);
   }
 
   componentDidMount(){

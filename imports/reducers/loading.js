@@ -1,7 +1,7 @@
 export default function loading(state, action) {
   if (typeof state === 'undefined') {
     return {
-      isLoading: true
+      isLoading: false
     }
   }
 
