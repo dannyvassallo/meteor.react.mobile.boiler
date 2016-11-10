@@ -5,6 +5,7 @@ import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import setSnackBar from '../../actions/snackbar.js';
+import Store from '../../reducers/index'
 
 export default class SignUpPage extends Component {
   constructor(props){
