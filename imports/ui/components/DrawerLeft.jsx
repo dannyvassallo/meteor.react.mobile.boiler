@@ -50,6 +50,12 @@ class DrawerLeft extends React.Component {
               ]
             )
           }
+          { Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+              [<Link key="admin" to="/admin" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Admin</MenuItem></Link>]
+            ) : (
+              ''
+            )
+          }
         </Drawer>
       </div>
     );
