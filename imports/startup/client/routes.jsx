@@ -4,8 +4,7 @@ import { Router, Route, IndexRoute, browserHistory } from 'react-router';
 
 import AppLayout from '../../ui/layouts/AppLayout.jsx';
 
-import { AdminRoute } from '../../ui/pages/AdminRoute.jsx';
-// When you export default you DON'T need {} otherwise, you will.
+import AdminRoute from '../../ui/pages/AdminRoute.jsx';
 import TasksPage from '../../ui/pages/TasksPage.jsx';
 import NotFound from '../../ui/pages/NotFound.jsx';
 import SignUpPage from '../../ui/pages/SignUpPage.jsx';

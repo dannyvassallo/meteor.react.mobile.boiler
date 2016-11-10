@@ -41,6 +41,12 @@ class DrawerLeft extends React.Component {
           disableSwipeToOpen={true}
         >
           <Link to="/" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Home</MenuItem></Link>
+          { Roles.userIsInRole(Meteor.userId(), 'admin') ? (
+              [ <Link key="admin" to="/admin" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Admin</MenuItem></Link> ]
+            ) : (
+              ''
+            )
+          }
           { Meteor.user() != null ? (
               [ <Link key="logout" to="#" className="menu-link"><MenuItem onTouchTap={this._handleLogout}>Log Out</MenuItem></Link> ]
             ) : (
@@ -48,12 +54,6 @@ class DrawerLeft extends React.Component {
                 <Link key="login" to="/login" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Login</MenuItem></Link>,
                 <Link key="signup" to="/signup" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Sign Up</MenuItem></Link>
               ]
-            )
-          }
-          { Roles.userIsInRole(Meteor.userId(), 'admin') ? (
-              [<Link key="admin" to="/admin" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Admin</MenuItem></Link>]
-            ) : (
-              ''
             )
           }
         </Drawer>
