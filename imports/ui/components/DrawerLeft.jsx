@@ -29,6 +29,16 @@ class DrawerLeft extends React.Component {
     });
   }
 
+  _handleOpen(){
+    self = this;
+    if(location.pathname == '/'){
+      setTimeout(function(){
+        self.props.snackbar.open = false;
+      }, 100);
+    }
+    return this.props.drawer.drawerOpen
+  }
+
   render() {
 
     return (
@@ -36,7 +46,7 @@ class DrawerLeft extends React.Component {
         <Drawer
           docked={false}
           width={200}
-          open={this.props.drawer.drawerOpen}
+          open={this._handleOpen()}
           onRequestChange={(open) => this._handleClose() }
           disableSwipeToOpen={true}
         >
