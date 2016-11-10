@@ -62,7 +62,7 @@ export default class SignUpPage extends Component {
             onTouchTap={this.handleSubmit}
           />
           <br />
-          <p className="text-center"> Already have an account? Login <Link to="/login">here</Link></p>
+          <p className="text-center"> Already have an account? Login <Link to="/users/login">here</Link></p>
           <br />
         </form>
       </div>

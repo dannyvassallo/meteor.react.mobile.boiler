@@ -32,7 +32,7 @@ Meteor.startup( () => {
   function redirectUnlessSignedIn(){
     if(Meteor.userId() === null){
       console.log("Redirecting Visitor");
-      browserHistory.replace('/login');
+      browserHistory.replace('users/login');
     } else {
       console.log("User is there");
     }
@@ -41,7 +41,7 @@ Meteor.startup( () => {
   function redirectUnlessAdmin(){
     if(!Roles.userIsInRole(Meteor.user(), ['admin'])){
       console.log("Redirecting Non-Admin");
-      browserHistory.replace('/login');
+      browserHistory.replace('users/login');
     } else {
       console.log("Admin is present");
     }
@@ -50,10 +50,14 @@ Meteor.startup( () => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ AppLayout }>
-        <IndexRoute onEnter={ redirectUnlessSignedIn } component={ TasksPage } />
-        <Route path="login" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={LoginPage}/>
-        <Route path="signup" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={SignUpPage}/>
-        <Route path="admin" onChange={ redirectUnlessAdmin } onEnter={ redirectUnlessAdmin } component={ AdminRoute }/>
+        <IndexRoute onEnter={ redirectUnlessSignedIn } onChange={ redirectUnlessSignedIn } component={ TasksPage } />
+        <Route path="users" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn }>
+          <Route path="login" component={LoginPage}/>
+          <Route path="signup" component={SignUpPage}/>
+        </Route>
+        <Route path="admin" onChange={ redirectUnlessAdmin } onEnter={ redirectUnlessAdmin }>
+          <IndexRoute component={ AdminRoute }/>
+        </Route>
         <Route path="*" component={ NotFound } />
       </Route>
     </Router>,

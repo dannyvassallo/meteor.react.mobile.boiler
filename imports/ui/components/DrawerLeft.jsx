@@ -20,7 +20,7 @@ class DrawerLeft extends React.Component {
     Meteor.logout(function(err){
       if(!err){
         Store.dispatch(setSnackBar(true, 'You\'ve been signed out successfully.', '#4CAF50'));
-        browserHistory.push('/login');
+        browserHistory.push('/users/login');
       }
     });
     Store.dispatch({
@@ -51,8 +51,8 @@ class DrawerLeft extends React.Component {
               [ <Link key="logout" to="#" className="menu-link"><MenuItem onTouchTap={this._handleLogout}>Log Out</MenuItem></Link> ]
             ) : (
               [
-                <Link key="login" to="/login" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Login</MenuItem></Link>,
-                <Link key="signup" to="/signup" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Sign Up</MenuItem></Link>
+                <Link key="login" to="/users/login" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Login</MenuItem></Link>,
+                <Link key="signup" to="/users/signup" className="menu-link"><MenuItem onTouchTap={this._handleClose}>Sign Up</MenuItem></Link>
               ]
             )
           }
