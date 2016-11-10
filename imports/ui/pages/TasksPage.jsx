@@ -11,7 +11,7 @@ import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import FloatingActionButtonMenu from '../components/Fab.jsx';
 import TaskForm from '../components/TaskForm.jsx';
-import setLoading from '../../actions/loader.js';
+import Loader from '../components/Loader'
 import Store from '../../reducers/index.js';
 import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
@@ -24,9 +24,10 @@ export default class TaskPage extends TrackerReact(React.Component){
     this.state = {
       hideCompleted: false,
       subscription: {
-        tasks: Meteor.subscribe('tasks')
+        tasks: Meteor.subscribe('tasks'),
       }
     };
+    console.log(this.state);
   }
 
   componentWillUnmount(){
@@ -81,6 +82,9 @@ export default class TaskPage extends TrackerReact(React.Component){
       <div className="row-fluid">
         <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-12 col-lg-offset-0">
           <Paper style={paperStyle} zDepth={1}>
+            {!this.state.subscription.tasks.ready() ?
+              <Loader />
+              :
             <List>
               <Subheader>
                 <h2 className="task-list-header">Task List ({this.incompleteCount()})</h2>
@@ -94,6 +98,7 @@ export default class TaskPage extends TrackerReact(React.Component){
               </Subheader>
               <Divider inset={true} />
             </List>
+          }
             {this.renderTasks()}
           </Paper>
           <FloatingActionButtonMenu open={this.props.modal.open} />

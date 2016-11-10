@@ -5,7 +5,6 @@ import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 import SnackbarContainer from '../components/SnackBarContainer.jsx';
 import DrawerLeft from '../components/DrawerLeft.jsx';
 import Loader from '../components/Loader.jsx';
-import setLoading from '../../actions/loader.js';
 import Store from '../../reducers/index.js';
 
 class AppLayout extends React.Component {
@@ -35,7 +34,6 @@ class AppLayout extends React.Component {
         <div>
           <NavBar {...this.state}/>
           <div className="container">
-            {this.state.loading.isLoading ? <Loader /> : ''}
             {this.props.children && React.cloneElement(this.props.children, this.state)}
           </div>
           <DrawerLeft {...this.state}/>

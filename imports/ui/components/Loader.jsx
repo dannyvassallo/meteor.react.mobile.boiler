@@ -3,10 +3,6 @@ import Store from '../../reducers/index.js';
 
 var Loader = React.createClass({
 
-  componentDidMount(){
-    alert('loader is here!');
-  },
-
   render: function() {
     return (
       <div className="spinner-wrap">
