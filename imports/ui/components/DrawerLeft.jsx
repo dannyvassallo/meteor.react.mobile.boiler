@@ -3,7 +3,7 @@ import { Link, browserHistory } from 'react-router';
 import Drawer from 'material-ui/Drawer';
 import MenuItem from 'material-ui/MenuItem';
 import Store from '../../reducers/index.js';
-import setSnackBar from '../helpers/snackbar.js';
+import setSnackBar from '../../actions/snackbar.js';
 
 class DrawerLeft extends React.Component {
 
@@ -19,7 +19,7 @@ class DrawerLeft extends React.Component {
     e.preventDefault();
     Meteor.logout(function(err){
       if(!err){
-        setSnackBar(true, 'You\'ve been signed out successfully.', '#4CAF50');
+        Store.dispatch(setSnackBar(true, 'You\'ve been signed out successfully.', '#4CAF50'));
         browserHistory.push('/login');
       }
     });

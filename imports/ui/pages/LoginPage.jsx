@@ -4,8 +4,9 @@ import { createContainer } from 'meteor/react-meteor-data'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
-import setLoading from '../helpers/loader.js';
-import setSnackBar from '../helpers/snackbar.js';
+import setLoading from '../../actions/loader.js';
+import setSnackBar from '../../actions/snackbar.js';
+import Store from '../../reducers/index'
 
 export default class LoginPage extends Component {
   constructor(props){
@@ -23,9 +24,9 @@ export default class LoginPage extends Component {
     let password = document.getElementById('login-password').value;
     Meteor.loginWithPassword(name, password, (err) => {
       if(err){
-        setSnackBar(true, err.reason, '#F44336');
+        Store.dispatch(setSnackBar(true, err.reason, '#F44336'));
       } else {
-        setSnackBar(true, 'You\'ve been signed in successfully.', '#4CAF50');
+        Store.dispatch(setSnackBar(true, 'You\'ve been signed in successfully.', '#4CAF50'));
       }
     });
   }

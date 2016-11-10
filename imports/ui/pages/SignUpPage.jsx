@@ -4,7 +4,7 @@ import { createContainer } from 'meteor/react-meteor-data'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
-import setSnackBar from '../helpers/snackbar.js';
+import setSnackBar from '../../actions/snackbar.js';
 
 export default class SignUpPage extends Component {
   constructor(props){
@@ -16,12 +16,11 @@ export default class SignUpPage extends Component {
     e.preventDefault();
     let name = document.getElementById("signup-name").value;
     let password = document.getElementById("signup-password").value;
-    this.setState({error: "test"});
     Accounts.createUser({username: name, password: password}, (err) => {
       if(err){
-        setSnackBar(true, err.reason, '#F44336');
+        Store.dispatch(setSnackBar(true, err.reason, '#F44336'));
       } else {
-        setSnackBar(true, 'You\'ve signed up successfully.', '#4CAF50');
+        Store.dispatch(setSnackBar(true, 'You\'ve signed up successfully.', '#4CAF50'));
         browserHistory.push('/');
       }
     });

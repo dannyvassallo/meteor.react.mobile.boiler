@@ -12,8 +12,10 @@ import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import FloatingActionButtonMenu from '../components/Fab.jsx';
 import TaskForm from '../components/TaskForm.jsx';
-import setLoading from '../helpers/loader.js';
+import setLoading from '../../actions/loader.js';
 import Store from '../../reducers/index.js';
+
+let taskSubscription;
 
 export class TaskPage extends Component {
 
@@ -22,6 +24,10 @@ export class TaskPage extends Component {
     this.state = {
       hideCompleted: false,
     };
+  }
+
+  componentWillUnmount(){
+    taskSubscription.stop();
   }
 
   toggleHideCompleted() {
@@ -91,9 +97,10 @@ TaskPage.propTypes = {
 
 export default TaskPageContainer = createContainer(() => {
 
-  Meteor.subscribe('tasks', {
+  taskSubscription = Meteor.subscribe('tasks', {
     onReady: function () {
-      console.log('HIT');
+      Store.dispatch(setLoading(true));
+      console.log(Store.getState());
     },
   });
 

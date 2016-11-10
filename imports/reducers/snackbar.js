@@ -7,13 +7,29 @@ export default function snackbar(state, action) {
     }
   }
 
+  // switch (action.type) {
+  //   case 'SET_SNACKBAR_MESSAGE':
+  //     return { ...state, message: action.message }
+  //   case 'SET_SNACKBAR_COLOR':
+  //     return { ...state, color: action.color }
+  //   case 'SET_SNACKBAR_OPEN':
+  //     return { ...state, open: action.open }
+  //   default:
+  //     return state
+  // }
   switch (action.type) {
-    case 'SET_SNACKBAR_MESSAGE':
-      return { ...state, message: action.message }
-    case 'SET_SNACKBAR_COLOR':
-      return { ...state, color: action.color }
-    case 'SET_SNACKBAR_OPEN':
-      return { ...state, open: action.open }
+    case 'DISPATCH_SNACKBAR':
+      return {
+        ...state,
+        message: action.message,
+        color: action.color,
+        open: action.open
+      }
+    case 'CLOSE_SNACKBAR':
+      return {
+        ...state,
+        open: action.open
+      }
     default:
       return state
   }

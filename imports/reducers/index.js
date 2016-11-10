@@ -14,8 +14,5 @@ const reducers = {
 
 module.exports = createStore(
   combineReducers(reducers),
-  {},
-  compose(
-    applyMiddleware(thunk)
-  )
+  compose(applyMiddleware(thunk))
 );

@@ -52,6 +52,8 @@ meteor run
   |-- imports
   |   |-- api
   |   |   |-- #your serverside methods & tests go here myfile.tests.js
+  |   |-- actions
+  |       |-- #Put your thunks here    
   |   |-- reducers
   |   |   |-- drawer.js #manages open/close drawer state
   |   |   |-- index.js #combines reducers using redux
@@ -69,8 +71,6 @@ meteor run
   |       |   |-- #the apps layouts go here
   |       |-- pages
   |           |-- #Put your page components here
-  |       |-- helpers
-  |           |-- #Put your helper scripts here  
   |-- server
       |-- main.js #imports from api
 ```
