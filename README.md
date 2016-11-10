@@ -20,7 +20,9 @@ Quick and easy deploy to heroku with instructions to build out for android.
 * flexboxgrid
 * material-ui
 * redux
+* thunk
 * alanning:roles
+* tracker-react
 
 ###Getting Started 🔥
 
@@ -65,8 +67,6 @@ meteor run
   |   |-- ui
   |       |-- components
   |       |   |-- #your components go here
-  |       |-- containers
-  |       |   |-- #containers w/ meteor data go here
   |       |-- layouts
   |       |   |-- #the apps layouts go here
   |       |-- pages

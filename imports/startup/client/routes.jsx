@@ -6,13 +6,12 @@ import AppLayout from '../../ui/layouts/AppLayout.jsx';
 
 import { AdminRoute } from '../../ui/pages/AdminRoute.jsx';
 // When you export default you DON'T need {} otherwise, you will.
-import TasksPageContainer from '../../ui/containers/TasksPageContainer.jsx';
+import TasksPage from '../../ui/pages/TasksPage.jsx';
 import NotFound from '../../ui/pages/NotFound.jsx';
 import SignUpPage from '../../ui/pages/SignUpPage.jsx';
 import LoginPage from '../../ui/pages/LoginPage.jsx';
 
 import Store from '../../reducers/index.js';
-
 
 Meteor.startup( () => {
 
@@ -41,7 +40,7 @@ Meteor.startup( () => {
   }
 
   function redirectUnlessAdmin(){
-    if(Meteor.userId() != null && !Roles.userIsInRole(Meteor.userId(), ['admin'])){
+    if(!Roles.userIsInRole(Meteor.user(), ['admin'])){
       console.log("Redirecting Non-Admin");
       browserHistory.replace('/login');
     } else {
@@ -52,7 +51,7 @@ Meteor.startup( () => {
   render(
     <Router history={ browserHistory }>
       <Route path="/" component={ AppLayout }>
-        <IndexRoute onEnter={ redirectUnlessSignedIn } component={ TaskPageContainer } />
+        <IndexRoute onEnter={ redirectUnlessSignedIn } component={ TasksPage } />
         <Route path="login" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={LoginPage}/>
         <Route path="signup" onChange={ redirectIfSignedIn } onEnter={ redirectIfSignedIn } component={SignUpPage}/>
         <Route path="admin" onChange={ redirectUnlessAdmin } onEnter={ redirectUnlessAdmin } component={ AdminRoute }/>
