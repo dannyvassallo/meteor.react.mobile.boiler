@@ -99,8 +99,7 @@ export default TaskPageContainer = createContainer(() => {
 
   taskSubscription = Meteor.subscribe('tasks', {
     onReady: function () {
-      Store.dispatch(setLoading(true));
-      console.log(Store.getState());
+      console.log('tasks are here');
     },
   });
 

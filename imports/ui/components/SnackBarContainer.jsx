@@ -14,7 +14,7 @@ var SnackbarContainer = React.createClass({
       <Snackbar
         open={this.props.snackbar.open}
         message={this.props.snackbar.message}
-        autoHideDuration={1000}
+        autoHideDuration={4000}
         onRequestClose={this.handleRequestClose}
         bodyStyle={{backgroundColor: this.props.snackbar.color}}
       />
