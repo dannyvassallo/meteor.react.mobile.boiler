@@ -1,11 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Link } from 'react-router'
-import { createContainer } from 'meteor/react-meteor-data'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
 import setSnackBar from '../../actions/snackbar.js';
-import Store from '../../reducers/index'
+import Store from '../../reducers/index';
 
 export default class SignUpPage extends Component {
   constructor(props){

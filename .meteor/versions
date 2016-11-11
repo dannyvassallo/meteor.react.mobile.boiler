@@ -70,7 +70,6 @@ practicalmeteor:sinon@1.14.1_2
 promise@0.8.8
 random@1.0.10
 rate-limit@1.0.6
-react-meteor-data@0.2.9
 reactive-dict@1.1.8
 reactive-var@1.0.11
 reload@1.1.11
@@ -89,7 +88,6 @@ templating@1.2.15
 templating-compiler@1.2.15
 templating-runtime@1.2.15
 templating-tools@1.0.5
-tmeasday:check-npm-versions@0.2.0
 tmeasday:test-reporter-helpers@0.2.1
 tracker@1.1.1
 ui@1.0.12

@@ -1,6 +1,7 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
+import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
 
 import AppLayout from '../../ui/layouts/AppLayout.jsx';
 
@@ -38,13 +39,27 @@ Meteor.startup( () => {
     }
   }
 
+
   function redirectUnlessAdmin(){
-    if(!Roles.userIsInRole(Meteor.user(), ['admin'])){
-      console.log("Redirecting Non-Admin");
-      browserHistory.replace('users/login');
-    } else {
-      console.log("Admin is present");
-    }
+    Tracker.autorun(() => {
+      console.log("RUNNING ADMIN CHECK");
+      if(Meteor.userId() === null){
+        console.log("Redirecting Visitor");
+        browserHistory.replace('users/login');
+        return;
+      }
+
+      if(!Meteor.user()){
+        return
+      }
+
+      if(!Roles.userIsInRole(Meteor.user(), ['admin'])){
+        console.log("Redirecting Non-Admin");
+        browserHistory.replace('users/login');
+      } else {
+        console.log("Admin is present");
+      }
+    });
   }
 
   render(
