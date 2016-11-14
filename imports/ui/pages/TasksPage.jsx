@@ -1,7 +1,6 @@
 import React, { Component, PropTypes } from 'react';
 import ReactDOM from 'react-dom';
 import { Meteor } from 'meteor/meteor';
-import { createContainer } from 'meteor/react-meteor-data';
 import { Tasks } from '../../api/tasks.js';
 import Task from '../components/Task.jsx';
 import { List, ListItem } from 'material-ui/List';
@@ -12,15 +11,27 @@ import Divider from 'material-ui/Divider';
 import TextField from 'material-ui/TextField';
 import FloatingActionButtonMenu from '../components/Fab.jsx';
 import TaskForm from '../components/TaskForm.jsx';
+import Loader from '../components/Loader'
+import Store from '../../reducers/index.js';
+import TrackerReact from 'meteor/ultimatejs:tracker-react';
 
-export class TaskPage extends Component {
+let taskSubscription;
+
+export default class TaskPage extends TrackerReact(React.Component){
 
   constructor(props) {
     super(props);
-
     this.state = {
       hideCompleted: false,
+      subscription: {
+        tasks: Meteor.subscribe('tasks'),
+      }
     };
+    console.log(this.state);
+  }
+
+  componentWillUnmount(){
+    this.state.subscription.tasks.stop();
   }
 
   toggleHideCompleted() {
@@ -29,13 +40,25 @@ export class TaskPage extends Component {
     });
   }
 
+  tasks(){
+    return Tasks.find({}, { sort: { createdAt: -1 } }).fetch();
+  }
+
+  incompleteCount(){
+    return Tasks.find({ checked: { $ne: true } }).count();
+  }
+
+  currentUser(){
+    return Meteor.user();
+  }
+
   renderTasks() {
-    let filteredTasks = this.props.tasks;
+    let filteredTasks = this.tasks();
     if (this.state.hideCompleted) {
       filteredTasks = filteredTasks.filter(task => !task.checked);
     }
     return filteredTasks.map((task) => {
-      const currentUserId = this.props.currentUser && this.props.currentUser._id;
+      const currentUserId = this.currentUser() && this.currentUser()._id;
       const showPrivateButton = task.owner === currentUserId;
 
       return (
@@ -59,9 +82,12 @@ export class TaskPage extends Component {
       <div className="row-fluid">
         <div className="col-xs-12 col-md-6 col-md-offset-3 col-lg-12 col-lg-offset-0">
           <Paper style={paperStyle} zDepth={1}>
+            {!this.state.subscription.tasks.ready() ?
+              <Loader />
+              :
             <List>
               <Subheader>
-                <h2 className="task-list-header">Task List ({this.props.incompleteCount})</h2>
+                <h2 className="task-list-header">Task List ({this.incompleteCount()})</h2>
                 <Checkbox
                   checked={this.state.hideCompleted}
                   onClick={this.toggleHideCompleted.bind(this)}
@@ -72,6 +98,7 @@ export class TaskPage extends Component {
               </Subheader>
               <Divider inset={true} />
             </List>
+          }
             {this.renderTasks()}
           </Paper>
           <FloatingActionButtonMenu open={this.props.modal.open} />
@@ -81,19 +108,3 @@ export class TaskPage extends Component {
     );
   }
 }
-
-TaskPage.propTypes = {
-  tasks: PropTypes.array.isRequired,
-  incompleteCount: PropTypes.number.isRequired,
-  currentUser: PropTypes.object,
-};
-
-export default TaskPageContainer = createContainer(() => {
-  Meteor.subscribe('tasks');
-
-  return {
-    tasks: Tasks.find({}, { sort: { createdAt: -1 } }).fetch(),
-    incompleteCount: Tasks.find({ checked: { $ne: true } }).count(),
-    currentUser: Meteor.user(),
-  };
-}, TaskPage);

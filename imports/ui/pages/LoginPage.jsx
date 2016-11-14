@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Link } from 'react-router'
-import { createContainer } from 'meteor/react-meteor-data'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
-import setSnackBar from '../helpers/snackbar.js';
+import setSnackBar from '../../actions/snackbar.js';
+import Store from '../../reducers/index'
 
 export default class LoginPage extends Component {
   constructor(props){
@@ -18,9 +18,9 @@ export default class LoginPage extends Component {
     let password = document.getElementById('login-password').value;
     Meteor.loginWithPassword(name, password, (err) => {
       if(err){
-        setSnackBar(true, err.reason, '#F44336');
+        Store.dispatch(setSnackBar(true, err.reason, '#F44336'));
       } else {
-        setSnackBar(true, 'You\'ve been signed in successfully.', '#4CAF50');
+        Store.dispatch(setSnackBar(true, 'You\'ve been signed in successfully.', '#4CAF50'));
       }
     });
   }
@@ -61,7 +61,7 @@ export default class LoginPage extends Component {
             onTouchTap={this.handleSubmit}
           />
           <br />
-          <p className="text-center"> Don't have an account? Register <Link to="/signup">here</Link></p>
+          <p className="text-center"> Don't have an account? Register <Link to="/users/signup">here</Link></p>
           <br />
         </form>
       </div>

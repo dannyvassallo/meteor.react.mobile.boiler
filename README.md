@@ -20,6 +20,9 @@ Quick and easy deploy to heroku with instructions to build out for android.
 * flexboxgrid
 * material-ui
 * redux
+* thunk
+* alanning:roles
+* tracker-react
 
 ###Getting Started 🔥
 
@@ -51,6 +54,8 @@ meteor run
   |-- imports
   |   |-- api
   |   |   |-- #your serverside methods & tests go here myfile.tests.js
+  |   |-- actions
+  |       |-- #Put your thunks here    
   |   |-- reducers
   |   |   |-- drawer.js #manages open/close drawer state
   |   |   |-- index.js #combines reducers using redux
@@ -62,14 +67,10 @@ meteor run
   |   |-- ui
   |       |-- components
   |       |   |-- #your components go here
-  |       |-- containers
-  |       |   |-- #containers w/ meteor data go here
   |       |-- layouts
   |       |   |-- #the apps layouts go here
   |       |-- pages
   |           |-- #Put your page components here
-  |       |-- helpers
-  |           |-- #Put your helper scripts here  
   |-- server
       |-- main.js #imports from api
 ```
@@ -97,6 +98,20 @@ You can checkout components and their markup here: http://www.material-ui.com/
 ###flexboxgrid 💪
 
 flexboxgrid is a grid system based on the flex display property. The markup is identical to Twitter bootstrap in most cases. See the examples here: http://flexboxgrid.com/
+
+###First Admin
+
+Follow the following instructions to create the initial admin user:
+
+```javascript
+// open your chrome console after you've logged in and run this:
+Meteor.userId();
+// copy out the returned id
+```
+
+With your new User ID copied, clone `settings.json.example` and rename it to `settings.json` and paste it in as a string value for the adminId attribute.
+
+Save, and restart the server with `--settings settings.json` as a flag. You should be able to visit `localhost:3000/admin` in your browser if this worked.
 
 ###Deployment 🚀
 

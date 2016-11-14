@@ -18,7 +18,6 @@ es5-shim@4.6.15                # ECMAScript 5 compatibility for older browsers.
 ecmascript@0.5.9              # Enable ECMAScript2015+ syntax in app code
 shell-server@0.2.1            # Server-side component of the `meteor shell` command
 
-react-meteor-data
 accounts-ui@1.1.9
 accounts-password@1.3.1
 practicalmeteor:mocha
@@ -26,3 +25,5 @@ practicalmeteor:mocha-console-runner
 fourseven:scss
 dispatch:mocha-phantomjs
 xolvio:cleaner
+alanning:roles
+ultimatejs:tracker-react

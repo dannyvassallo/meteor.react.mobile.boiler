@@ -1,10 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { browserHistory, Link } from 'react-router'
-import { createContainer } from 'meteor/react-meteor-data'
 import TextField from 'material-ui/TextField';
 import RaisedButton from 'material-ui/RaisedButton';
 import Snackbar from 'material-ui/Snackbar';
-import setSnackBar from '../helpers/snackbar.js';
+import setSnackBar from '../../actions/snackbar.js';
+import Store from '../../reducers/index';
 
 export default class SignUpPage extends Component {
   constructor(props){
@@ -16,12 +16,11 @@ export default class SignUpPage extends Component {
     e.preventDefault();
     let name = document.getElementById("signup-name").value;
     let password = document.getElementById("signup-password").value;
-    this.setState({error: "test"});
     Accounts.createUser({username: name, password: password}, (err) => {
       if(err){
-        setSnackBar(true, err.reason, '#F44336');
+        Store.dispatch(setSnackBar(true, err.reason, '#F44336'));
       } else {
-        setSnackBar(true, 'You\'ve signed up successfully.', '#4CAF50');
+        Store.dispatch(setSnackBar(true, 'You\'ve signed up successfully.', '#4CAF50'));
         browserHistory.push('/');
       }
     });
@@ -63,7 +62,7 @@ export default class SignUpPage extends Component {
             onTouchTap={this.handleSubmit}
           />
           <br />
-          <p className="text-center"> Already have an account? Login <Link to="/login">here</Link></p>
+          <p className="text-center"> Already have an account? Login <Link to="/users/login">here</Link></p>
           <br />
         </form>
       </div>
