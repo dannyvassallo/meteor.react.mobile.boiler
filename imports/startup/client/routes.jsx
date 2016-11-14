@@ -32,7 +32,7 @@ Meteor.startup( () => {
   function redirectUnlessSignedIn(){
     if(Meteor.userId() === null){
       console.log("Redirecting Visitor");
-      browserHistory.replace('users/login');
+      browserHistory.replace('/users/login');
     } else {
       console.log("User is there");
     }
@@ -44,7 +44,7 @@ Meteor.startup( () => {
       console.log("RUNNING ADMIN CHECK");
       if(Meteor.userId() === null){
         console.log("Redirecting Visitor");
-        browserHistory.replace('users/login');
+        browserHistory.replace('/users/login');
         return;
       }
 
@@ -54,7 +54,7 @@ Meteor.startup( () => {
 
       if(!Roles.userIsInRole(Meteor.user(), ['admin'])){
         console.log("Redirecting Non-Admin");
-        browserHistory.replace('users/login');
+        browserHistory.replace('/users/login');
       } else {
         console.log("Admin is present");
         console.log("state in route: "+ JSON.stringify(Store.getState()));

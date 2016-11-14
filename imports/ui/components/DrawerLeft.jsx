@@ -19,8 +19,8 @@ class DrawerLeft extends React.Component {
     e.preventDefault();
     Meteor.logout(function(err){
       if(!err){
-        Store.dispatch(setSnackBar(true, 'You\'ve been signed out successfully.', '#4CAF50'));
         browserHistory.push('/users/login');
+        Store.dispatch(setSnackBar(true, 'You\'ve been signed out successfully.', '#4CAF50'));
       }
     });
     Store.dispatch({
