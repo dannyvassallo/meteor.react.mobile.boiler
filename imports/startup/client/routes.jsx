@@ -10,6 +10,7 @@ import TasksPage from '../../ui/pages/TasksPage.jsx';
 import NotFound from '../../ui/pages/NotFound.jsx';
 import SignUpPage from '../../ui/pages/SignUpPage.jsx';
 import LoginPage from '../../ui/pages/LoginPage.jsx';
+import loading from '../../actions/loading';
 
 import Store from '../../reducers/index.js';
 
@@ -40,7 +41,7 @@ Meteor.startup( () => {
   }
 
 
-  function redirectUnlessAdmin(){
+  function redirectUnlessAdmin(Store){
     Tracker.autorun(() => {
       console.log("RUNNING ADMIN CHECK");
       if(Meteor.userId() === null){
@@ -58,6 +59,8 @@ Meteor.startup( () => {
         browserHistory.replace('users/login');
       } else {
         console.log("Admin is present");
+        console.log("state in route: "+ JSON.stringify(Store.getState()));
+        Store.dispatch(loading(false));
       }
     });
   }
@@ -70,7 +73,7 @@ Meteor.startup( () => {
           <Route path="login" component={LoginPage}/>
           <Route path="signup" component={SignUpPage}/>
         </Route>
-        <Route path="admin" onChange={ redirectUnlessAdmin } onEnter={ redirectUnlessAdmin }>
+        <Route path="admin" onChange={ redirectUnlessAdmin(Store) } onEnter={ redirectUnlessAdmin(Store) }>
           <IndexRoute component={ AdminRoute }/>
         </Route>
         <Route path="*" component={ NotFound } />
