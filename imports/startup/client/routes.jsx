@@ -1,8 +1,6 @@
 import React from 'react';
 import { render } from 'react-dom';
 import { Router, Route, IndexRoute, browserHistory } from 'react-router';
-import { syncHistoryWithStore, routerReducer } from 'react-router-redux'
-
 import AppLayout from '../../ui/layouts/AppLayout.jsx';
 
 import AdminRoute from '../../ui/pages/AdminRoute.jsx';
