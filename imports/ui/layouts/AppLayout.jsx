@@ -13,11 +13,6 @@ class AppLayout extends React.Component {
     console.log(props);
     super(props);
     this.state = Store.getState();
-    // this.state.user = {
-    //   subscription: {
-    //     user: Meteor.subscribe(''),
-    //   }
-    // };
   }
 
   componentWillMount(){
