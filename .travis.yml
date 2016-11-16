@@ -1,10 +1,8 @@
 language: node_js
 
-sudo: required
-
-language: node_js
-
 node_js: stable
+
+sudo: required
 
 before_install:
   - sudo add-apt-repository -y ppa:ubuntu-toolchain-r/test
